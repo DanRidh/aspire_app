@@ -1,10 +1,19 @@
 import './App.css';
-import Navbar from './components/Navbar';
+import React, {useState ,useEffect} from 'react'
+import LoadingIndicator from './components/LoadingIndicator'
 import { SignUpForm } from "./components/SignUpForm";
-
-
+import Navbar from './components/Navbar';
 
 function App() {
+  
+  const [ isloading, setIsLoading] = useState(true);
+
+  /** 
+  if(isloading){
+    return <LoadingIndicator width="150px" height="150px" color="black" /> 
+  }
+  */ //is broken, perma loading if running
+
   return (
     <>
       <Navbar/>
@@ -17,5 +26,7 @@ function App() {
     </>
   );
 }
+
+
 
 export default App;
