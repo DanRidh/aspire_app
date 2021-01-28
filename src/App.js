@@ -1,5 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar';
+import Tutors from './components/Tutors';
 import { SignUpForm } from "./components/SignUpForm";
 
 
@@ -14,6 +15,13 @@ function App() {
           formDescription="Sign Up to continue."
         />
       </div>
+      <br/>
+      <div style={{display:"flex", flexWrap:"wrap", alignItems:"center", marginleft:"20px"}}>
+      <Tutors />
+      <Tutors />
+      <Tutors />
+      </div>
+      
     </>
   );
 }
