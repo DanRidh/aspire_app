@@ -1,6 +1,8 @@
 import './App.css';
 import React, {useState ,useEffect} from 'react'
 import LoadingIndicator from './components/LoadingIndicator'
+import Navbar from './components/Navbar';
+import Tutors from './components/Tutors';
 import { SignUpForm } from "./components/SignUpForm";
 import Navbar from './components/Navbar';
 
@@ -14,6 +16,8 @@ function App() {
   }
   */ //is broken, perma loading if running
 
+
+function App() {
   return (
     <>
       <Navbar/>
@@ -23,8 +27,14 @@ function App() {
           formDescription="Sign Up to continue."
         />
       </div>
+      <br/>
+      <div>
+      <Tutors/>
+      </div>
+      
     </>
   );
+}
 }
 
 
