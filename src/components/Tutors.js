@@ -7,6 +7,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Ratings from './Ratings';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,10 +41,11 @@ export default function RecipeReviewCard() {
   };
 
   return (
+    <div style={{display:"flex", flexWrap:"wrap", alignItems:"center", marginleft:"20px", justifyContent : 'space-around'}}>
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
+          <Avatar aria-label="tutor" className={classes.avatar}>
             W
           </Avatar>
         }
@@ -53,7 +55,7 @@ export default function RecipeReviewCard() {
           </IconButton>
         }
         title="Warren Buffet"
-        subheader="September 69, 1969"
+        subheader="Finance"
       />
       <CardMedia
         className={classes.media} 
@@ -63,6 +65,7 @@ export default function RecipeReviewCard() {
         <Typography variant="body2" color="textSecondary" component="p">
           The only teacher you'll need
         </Typography>
+        <Ratings/>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
@@ -91,6 +94,166 @@ export default function RecipeReviewCard() {
         </CardContent>
       </Collapse>
     </Card>
+
+    <Card className={classes.root}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            W
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title="Warren Buffet"
+        subheader="Finance"
+      />
+      <CardMedia
+        className={classes.media} 
+        image = "WB.jpeg"
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          The only teacher you'll need
+        </Typography>
+        <Ratings/>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Qualification:</Typography>
+          <Typography paragraph>
+            10 years of experience in memes sharing.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+
+    <Card className={classes.root}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            W
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title="Warren Buffet"
+        subheader="Finance"
+      />
+      <CardMedia
+        className={classes.media} 
+        image = "WB.jpeg"
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          The only teacher you'll need
+        </Typography>
+        <Ratings/>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Qualification:</Typography>
+          <Typography paragraph>
+            10 years of experience in memes sharing.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+
+    <Card className={classes.root}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            W
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title="Warren Buffet"
+        subheader="Finance"
+      />
+      <CardMedia
+        className={classes.media} 
+        image = "WB.jpeg"
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          The only teacher you'll need
+        </Typography>
+        <Ratings/>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Qualification:</Typography>
+          <Typography paragraph>
+            10 years of experience in memes sharing.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+    </div>
   );
 }
 

@@ -5,6 +5,7 @@ import { SignUpForm } from "./components/SignUpForm";
 
 
 
+
 function App() {
   return (
     <>
@@ -16,10 +17,8 @@ function App() {
         />
       </div>
       <br/>
-      <div style={{display:"flex", flexWrap:"wrap", alignItems:"center", marginleft:"20px"}}>
-      <Tutors />
-      <Tutors />
-      <Tutors />
+      <div>
+      <Tutors/>
       </div>
       
     </>
