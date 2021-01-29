@@ -63,7 +63,7 @@ export default function RecipeReviewCard() {
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          The only teacher you'll need
+          The only guru you'll need
         </Typography>
         <Ratings/>
       </CardContent>
@@ -116,7 +116,7 @@ export default function RecipeReviewCard() {
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          The only teacher you'll need
+          The only guru you'll need
         </Typography>
         <Ratings/>
       </CardContent>
@@ -169,7 +169,7 @@ export default function RecipeReviewCard() {
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          The only teacher you'll need
+          The only guru you'll need
         </Typography>
         <Ratings/>
       </CardContent>
@@ -222,7 +222,7 @@ export default function RecipeReviewCard() {
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          The only teacher you'll need
+          The only guru you'll need
         </Typography>
         <Ratings/>
       </CardContent>
