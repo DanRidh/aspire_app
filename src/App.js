@@ -6,6 +6,7 @@ import Tutors from './components/Tutors';
 
 import {Redirect, Route} from 'react-router-dom'
 import TutorProfilePage from './pages/TutorProfilePage'
+import MyProfilePage from './pages/MyProfilePage'
 
 function App() {
     // loggedIn state
@@ -16,6 +17,10 @@ function App() {
   return (
     <>
       <Navbar loggedIn={loggedIn}/>
+      <Route exact path="/profile">
+        {!loggedIn? <Redirect to ="/" /> : <MyProfilePage />}
+      </Route>
+
       <br/>
       <div>
       <Tutors/>
