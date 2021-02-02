@@ -30,7 +30,7 @@ function Navbar({loggedIn}) {
       </AppBar>
         
       </>
-    );
+    )
   }
 
   export default Navbar;
