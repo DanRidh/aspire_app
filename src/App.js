@@ -5,6 +5,9 @@ import Tutors from './components/Tutors';
 import { SignUpForm } from "./components/SignUpForm";
 
 
+import {Redirect, Route} from 'react-router-dom'
+import TutorProfilePage from './pages/TutorProfilePage'
+
 function App() {
   return (
     <>
@@ -19,6 +22,7 @@ function App() {
       <div>
       <Tutors/>
       </div>
+      <TutorProfilePage/>
       
     </>
   );
