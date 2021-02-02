@@ -2,7 +2,6 @@ import './App.css';
 import React,{useState} from 'react'
 import Navbar from './components/Navbar';
 import Tutors from './components/Tutors';
-import { SignUpForm } from "./components/SignUpForm";
 
 
 import {Redirect, Route} from 'react-router-dom'
@@ -17,12 +16,6 @@ function App() {
   return (
     <>
       <Navbar loggedIn={loggedIn}/>
-      <div className="SignUpForm">
-        <SignUpForm
-          formName="Welcome! "
-          formDescription="Sign Up to continue."
-        />
-      </div>
       <br/>
       <div>
       <Tutors/>
