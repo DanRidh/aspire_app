@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { useParams } from 'react-router-dom';
+import { Box, Container } from '@material-ui/core';
 
 const TutorProfilePage =()=>{
 
@@ -37,11 +38,20 @@ const TutorProfilePage =()=>{
     },[])
 
     return (
-        <div>
-            <div>
-                <img src="" class=""/> profile photo
-                <p>{username}</p>
-            </div>
+        <Container>
+            <Container>
+                <Avatar alt={`${firstName} ${lastName}`} src={profilePhoto} />
+                <Box fontSize="h3.fontSize" >{firstName} {lastName}</Box>
+                <Box component="fieldset" mb={3} borderColor="transparent">
+                    <Rating name="read-only" value={value} readOnly />
+                    <Typography component="legend">{rating}/5.0</Typography>
+                </Box>
+                <Box>Age : {age} </Box>
+                <Box>Gender : {isFemale? "Female":"Male"}</Box>
+
+                <Box fontSize="h6.fontSize" fontStyle="italic">@{username}</Box>
+                <Box>{email}</Box>
+            </Container>
             <div>
                 <h2>tutor's classes</h2>
                 <div>
@@ -69,7 +79,7 @@ const TutorProfilePage =()=>{
                     </Card>
                 </div>
             </div>
-        </div>
+        </Container>
     )
 }
 
