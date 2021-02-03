@@ -1,38 +1,26 @@
-import './App.css';
-import React,{useState} from 'react'
-import Navbar from './components/Navbar';
-import Tutors from './components/Tutors';
+import "./App.css";
+import React, { useState } from "react";
+import Navbar from "./components/Navbar";
+import Tutors from "./components/Tutors";
 
-
-import {Redirect, Route} from 'react-router-dom'
-import TutorProfilePage from './pages/TutorProfilePage'
-import MyProfilePage from './pages/MyProfilePage'
-import Homepage from './pages/Homepage'
+import { Redirect, Route } from "react-router-dom";
+import TutorProfilePage from "./pages/TutorProfilePage";
+import MyProfilePage from "./pages/MyProfilePage";
+import Homepage from "./pages/Homepage";
+import LandingPage from "./pages/Landingpage";
 
 function App() {
-    // loggedIn state
-    const [loggedIn,setLoggedIn]=useState(
-      localStorage.getItem("jwt") !== null
-    )
-  
+  // loggedIn state
+  const [loggedIn, setLoggedIn] = useState(
+    localStorage.getItem("jwt") !== null
+  );
+
   return (
     <>
-      <Navbar loggedIn={loggedIn}/>
-      <Homepage/>
-      <Route exact path="/profile">
-        {!loggedIn? <Redirect to ="/" /> : <MyProfilePage />}
-      </Route>
-
-      <br/>
-      <div>
-      <Tutors/>
-      </div>
-      <TutorProfilePage/>
-      
+      <Navbar></Navbar>
+      <LandingPage></LandingPage>
     </>
   );
 }
-
-
 
 export default App;
