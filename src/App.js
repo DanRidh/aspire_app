@@ -1,21 +1,38 @@
 import './App.css';
+import React,{useState} from 'react'
 import Navbar from './components/Navbar';
-import { SignUpForm } from "./components/SignUpForm";
+import Tutors from './components/Tutors';
 
 
+import {Redirect, Route} from 'react-router-dom'
+import TutorProfilePage from './pages/TutorProfilePage'
+import MyProfilePage from './pages/MyProfilePage'
+import Homepage from './pages/Homepage'
 
 function App() {
+    // loggedIn state
+    const [loggedIn,setLoggedIn]=useState(
+      localStorage.getItem("jwt") !== null
+    )
+  
   return (
     <>
-      <Navbar/>
-      <div className="SignUpForm">
-        <SignUpForm
-          formName="Welcome! "
-          formDescription="Sign Up to continue."
-        />
+      <Navbar loggedIn={loggedIn}/>
+      <Homepage/>
+      <Route exact path="/profile">
+        {!loggedIn? <Redirect to ="/" /> : <MyProfilePage />}
+      </Route>
+
+      <br/>
+      <div>
+      <Tutors/>
       </div>
+      <TutorProfilePage/>
+      
     </>
   );
 }
+
+
 
 export default App;

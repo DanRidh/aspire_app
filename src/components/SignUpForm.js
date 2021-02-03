@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import { Button, TextField, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import Checkboxes from './Checkboxes';
 
 export function SignUpForm(props) {
   const useStyles = makeStyles(theme => ({
@@ -75,14 +76,24 @@ export function SignUpForm(props) {
 
         <form onSubmit={handleSubmit}>
           <TextField
-            label="Name"
+            label="First Name"
             id="margin-normal"
-            name="name"
+            name="first_name"
             defaultValue={formInput.name}
             className={classes.textField}
-            helperText="e.g. David Mcdonald"
+            helperText="e.g. David"
             onChange={handleInput}
           />
+          <TextField
+            label="Last Name"
+            id="margin-normal"
+            name="last_name"
+            defaultValue={formInput.name}
+            className={classes.textField}
+            helperText="e.g. Mcdonald"
+            onChange={handleInput}
+          />
+          <Checkboxes/>
           <TextField
             label="Email"
             id="margin-normal"
@@ -115,3 +126,4 @@ export function SignUpForm(props) {
     </div>
   );
 }
+
