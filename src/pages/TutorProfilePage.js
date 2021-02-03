@@ -9,7 +9,7 @@ import { Box, Container } from '@material-ui/core';
 
 const TutorProfilePage =()=>{
 
-    let id = useParams().id
+    let tutor_id = useParams().id
     const jwt = localStorage.getItem("jwt")
 
     const [age, updateAge] = useState(0)
@@ -21,9 +21,11 @@ const TutorProfilePage =()=>{
     const [rating, updateRating] = useState(5)
     const [username, updateUsername] = useState("")
 
+    const [classList, updateClassList] = useState([])
+
     // Retrieve tutor
-    useEffect( ()=>{
-        axios.get(`https://aspire-api2021.herokuapp.com/tutors/${id}`)
+    useEffect(()=>{
+        axios.get(`https://aspire-api2021.herokuapp.com/tutors/${tutor_id}`)
         .then(res=>{
             updateAge(res.age)
             updateEmail(res.email)
@@ -35,6 +37,15 @@ const TutorProfilePage =()=>{
             updateUsername(res.username)
         })
 
+    },[])
+
+    // Retrieve tutor's classes
+    // WIP - pending API for retrieving tutor_sessions based on tutor_id
+    useEffect(()=>{
+        axios.get(`https://aspire-api2021.herokuapp.com/api/v1/tutor_sessions/${tutor_id}`)
+        .then(res=>{
+
+        })
     },[])
 
     return (
@@ -52,33 +63,27 @@ const TutorProfilePage =()=>{
                 <Box fontSize="h6.fontSize" fontStyle="italic">@{username}</Box>
                 <Box>{email}</Box>
             </Container>
-            <div>
-                <h2>tutor's classes</h2>
-                <div>
-                    <h3>List of classes conducted by tutor </h3>
-                    <Card  variant="outlined">
-                        <CardContent>
-                            <Typography color="textSecondary" gutterBottom>
-                            Word of the Day
-                            </Typography>
-                            <Typography variant="h5" component="h2">
-                                test text
-                            </Typography>
-                            <Typography color="textSecondary">
-                            adjective
-                            </Typography>
-                            <Typography variant="body2" component="p">
-                            well meaning and kindly.
-                            <br />
-                            {'"a benevolent smile"'}
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button size="small">Learn More</Button>
-                        </CardActions>
-                    </Card>
-                </div>
-            </div>
+            <Container>
+                <Box fontSize="h3.fontSize" fontStyle="fontWeightMedium">Join one of {firstName}'s upcoming classes!</Box>
+
+                <Container display="flex" flexWrap="wrap">
+                {/* For each class in tutor_session, display:*/}
+                {/* class placeholder image */}
+                {/* class title, links to viewClass page*/}
+                {/* class subject, optional: link to search page for this subject */}
+                {/* tutor profile pic */}
+                {/* tutor full name, linke to tutor profile page */}
+                {/* date */}
+                {/* number of seats left */}
+                {/* join button */}
+                {/* share button, links to viewClass page */}
+
+                    {/* WIP */}
+                    <Card username={username} profilePhoto={profilePhoto} />
+                    
+                {/* End loop */}
+                </Container>
+            </Container>
         </Container>
     )
 }
