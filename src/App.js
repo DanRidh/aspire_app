@@ -22,6 +22,7 @@ function App() {
       <Route exact path="/profile">
         {!loggedIn? <Redirect to ="/" /> : <MyProfilePage />}
       </Route>
+      <Route path="/tutor/:id" component ={TutorProfilePage}/>
 
       <br/>
       <div>
