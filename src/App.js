@@ -8,6 +8,7 @@ import {Redirect, Route} from 'react-router-dom'
 import TutorProfilePage from './pages/TutorProfilePage'
 import MyProfilePage from './pages/MyProfilePage'
 import Homepage from './pages/Homepage'
+import StudentProfilePage from './pages/StudentProfilePage';
 
 function App() {
     // loggedIn state
@@ -23,6 +24,7 @@ function App() {
         {!loggedIn? <Redirect to ="/" /> : <MyProfilePage />}
       </Route>
       <Route path="/tutor/:id" component ={TutorProfilePage}/>
+      <Route path="student/:id" component = {StudentProfilePage} />
 
       <br/>
       <div>
