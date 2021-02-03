@@ -1,36 +1,53 @@
-import {Button, AppBar, Toolbar, IconButton, Typography} from '@material-ui/core';
-import {Menu, AccountCircle} from '@material-ui/icons';
+import {
+  Button,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+} from "@material-ui/core";
+import { AccountCircle } from "@material-ui/icons";
+import logo from "../images/logo.png";
 
-function Navbar({loggedIn}) {
-
-
-    return (
-      <>
-      <AppBar position="static">
+function Navbar({ loggedIn }) {
+  return (
+    <>
+      <AppBar
+        position="static"
+        style={{
+          color: "#0ac5a8",
+          backgroundColor: "black",
+          position: "fixed",
+        }}
+      >
         <Toolbar>
-          <IconButton edge='start' aria-label= 'menu'>
-            <Menu/>
-          </IconButton>
-          <Typography variant='h6' style={{flexGrow:1}}>
-            Aspire
-          </Typography>
+          <img
+            src={logo}
+            style={{
+              height: "50px",
+              width: "70px",
+              paddingTop: "10px",
+              paddingBottom: "10px",
+            }}
+          ></img>
 
-          {loggedIn
-          ?
-          <IconButton color='inherit' aria-label='account'>
-            <AccountCircle/>
-          </IconButton>
-          :
+          <Typography variant="h6" style={{ flexGrow: 1 }}></Typography>
+
+          {loggedIn ? (
+            <IconButton color="inherit" aria-label="account">
+              <AccountCircle />
+            </IconButton>
+          ) : (
             <>
-              <Button color='inherit'>Login</Button>
-              <Button href='' color='inherit' >Register</Button>
+              <Button color="inherit">Login</Button>
+              <Button href="" color="inherit">
+                Sign Up
+              </Button>
             </>
-          }
+          )}
         </Toolbar>
       </AppBar>
-        
-      </>
-    )
-  }
+    </>
+  );
+}
 
-  export default Navbar;
+export default Navbar;
