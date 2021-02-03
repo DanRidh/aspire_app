@@ -1,7 +1,6 @@
 import './App.css';
 import React,{useState} from 'react'
 import Navbar from './components/Navbar';
-import Tutors from './components/Tutors';
 
 
 import {Redirect, Route} from 'react-router-dom'
@@ -25,13 +24,6 @@ function App() {
       </Route>
       <Route path="/tutor/:id" component ={TutorProfilePage}/>
       <Route path="student/:id" component = {StudentProfilePage} />
-
-      <br/>
-      <div>
-      <Tutors/>
-      </div>
-      <TutorProfilePage/>
-      
     </>
   );
 }
