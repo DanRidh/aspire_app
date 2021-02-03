@@ -8,6 +8,8 @@ import TutorProfilePage from "./pages/TutorProfilePage";
 import MyProfilePage from "./pages/MyProfilePage";
 import Homepage from "./pages/Homepage";
 import LandingPage from "./pages/Landingpage";
+import StudentProfilePage from './pages/StudentProfilePage';
+
 
 function App() {
   // loggedIn state
@@ -19,6 +21,14 @@ function App() {
     <>
       <Navbar></Navbar>
       <LandingPage></LandingPage>
+
+      <Navbar loggedIn={loggedIn}/>
+      <Route exact path ="/" component={Homepage} />
+      <Route exact path="/profile">
+        {!loggedIn? <Redirect to ="/" /> : <MyProfilePage />}
+      </Route>
+      <Route path="/tutor/:id" component ={TutorProfilePage}/>
+      <Route path="student/:id" component = {StudentProfilePage} />
     </>
   );
 }
