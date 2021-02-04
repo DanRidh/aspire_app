@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
         margin:"auto",
         marginTop:"50px",
         width:"50vw",
-        height:"15vh",
+        height:"30vh",
         display:"block",
         padding:"30px",
         textAlign:"center",
@@ -114,7 +114,7 @@ let LoginModal=({ loggedIn ,setLoggedIn})=>{
             open={openRegister}
             onClose={handleCloseRegister}
             >
-                <Paper className={classes.paper}>
+                <Paper className={classes.paper} style={{height: "60vh"}}>
                     <Typography variant="h6">Register a {accType} account.</Typography>
                     <SignUpForm />
                 </Paper>

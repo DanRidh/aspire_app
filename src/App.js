@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} ></Navbar>
-      {/* <LandingPage></LandingPage> */}
+      <LandingPage></LandingPage>
 
       {/* <Navbar loggedIn={loggedIn} />
       <Route exact path="/" component={Homepage} />
@@ -30,7 +30,7 @@ function App() {
       </Route>
       <Route path="/tutor/:id" component={TutorProfilePage} />
       <Route path="student/:id" component={StudentProfilePage} /> */}
-      <SignUpPage></SignUpPage>
+      {/* <SignUpPage></SignUpPage> */}
 
       <Footer></Footer>
     </>
