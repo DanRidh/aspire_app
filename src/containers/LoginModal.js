@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
         margin:"auto",
         marginTop:"50px",
         width:"50vw",
-        height:"15vh",
+        height:"30vh",
         display:"block",
         padding:"30px",
         textAlign:"center",
