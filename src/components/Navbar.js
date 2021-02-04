@@ -1,5 +1,4 @@
 import {
-  Button,
   AppBar,
   Toolbar,
   IconButton,
@@ -7,8 +6,14 @@ import {
 } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import logo from "../images/logo.png";
+import { useState } from "react";
+import LoginModal from "../containers/LoginModal";
 
-function Navbar({ loggedIn }) {
+function Navbar({ loggedIn, setLoggedIn }) {
+
+  const [isOpen, setIsOpen] = useState(false)
+  const toggle = () => setIsOpen(!isOpen);
+
   return (
     <>
       <AppBar
@@ -39,10 +44,7 @@ function Navbar({ loggedIn }) {
             </IconButton>
           ) : (
             <>
-              <Button color="inherit">Login</Button>
-              <Button href="" color="inherit">
-                Sign Up
-              </Button>
+              <LoginModal loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
             </>
           )}
         </Toolbar>

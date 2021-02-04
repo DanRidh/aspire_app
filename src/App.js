@@ -20,7 +20,7 @@ function App() {
 
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} ></Navbar>
       {/* <LandingPage></LandingPage> */}
 
       {/* <Navbar loggedIn={loggedIn} />
