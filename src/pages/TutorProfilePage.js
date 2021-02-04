@@ -54,43 +54,7 @@ const TutorProfilePage = () => {
       .then((res) => {});
   }, []);
 
-  return (
-    <Container>
-      <Container>
-        <Avatar alt={`${firstName} ${lastName}`} src={profilePhoto} />
-        <Box fontSize="h3.fontSize">
-          {firstName} {lastName}
-        </Box>
-        <Box component="fieldset" mb={3} borderColor="transparent">
-          <Rating name="read-only" value={"asd"} readOnly />
-          <Typography component="legend">{rating}/5.0</Typography>
-        </Box>
-        <Box>Age : {age} </Box>
-        <Box>Gender : {isFemale ? "Female" : "Male"}</Box>
-
-        <Box fontSize="h6.fontSize" fontStyle="italic">
-          @{username}
-        </Box>
-        <Box>{email}</Box>
-      </Container>
-      <Container>
-        <Box fontSize="h3.fontSize" fontStyle="fontWeightMedium">
-          Join one of {firstName}'s upcoming classes!
-        </Box>
-
-        <Container display="flex" flexWrap="wrap">
-          {/* For each class in tutor_session, display:*/}
-          {/* class placeholder image */}
-          {/* class title, links to viewClass page*/}
-          {/* class subject, optional: link to search page for this subject */}
-          {/* tutor profile pic */}
-          {/* tutor full name, linke to tutor profile page */}
-          {/* date */}
-          {/* number of seats left */}
-          {/* join button */}
-          {/* share button, links to viewClass page */}
-
-    return (
+     return (
         <Container>
             <Container>
                 <Avatar alt={`${firstName} ${lastName}`} src={profilePhoto} />
