@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+}
+
+.footer {
+  height: 200px;
+  background-color: black;
+  width: 100%;
+  color: #7e7e7e;
+  text-align: center;
+}
+
+.footer-links {
+  font-weight: 500;
+  font-size: 12px;
+  color: #7e7e7e;
+  text-align: center;
+  user-select: none;
+}
+
+.footer-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-links ul li a {
+  display: block;
+  margin: 0 5px;
+  text-decoration: underline;
+  color: #7e7e7e;
+  transition: all 0.2s linear;
+}
