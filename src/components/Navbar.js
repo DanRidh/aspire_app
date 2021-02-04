@@ -17,6 +17,7 @@ function Navbar({ loggedIn }) {
           color: "#0ac5a8",
           backgroundColor: "black",
           position: "fixed",
+          top: "0",
         }}
       >
         <Toolbar>
