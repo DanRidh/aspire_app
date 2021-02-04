@@ -1,45 +1,45 @@
 import React, { useReducer } from "react";
 import { Button, TextField, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Checkboxes from './Checkboxes';
+import Checkboxes from "./Checkboxes";
 
 export function SignUpForm(props) {
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles((theme) => ({
     button: {
-      margin: theme.spacing(1)
+      margin: theme.spacing(1),
     },
     leftIcon: {
-      marginRight: theme.spacing(1)
+      marginRight: theme.spacing(1),
     },
     rightIcon: {
-      marginLeft: theme.spacing(1)
+      marginLeft: theme.spacing(1),
     },
     iconSmall: {
-      fontSize: 20
+      fontSize: 20,
     },
     root: {
-      padding: theme.spacing(3, 2)
+      padding: theme.spacing(3, 2),
     },
     container: {
       display: "flex",
-      flexWrap: "wrap"
+      flexWrap: "wrap",
     },
     textField: {
       marginLeft: theme.spacing(1),
       marginRight: theme.spacing(1),
-      width: 400
-    }
+      width: 400,
+    },
   }));
 
   const [formInput, setFormInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
       name: "",
-      email: ""
+      email: "",
     }
   );
 
-  const handleSubmit = evt => {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
 
     let data = { formInput };
@@ -48,15 +48,15 @@ export function SignUpForm(props) {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     })
-      .then(response => response.json())
-      .then(response => console.log("Success:", JSON.stringify(response)))
-      .catch(error => console.error("Error:", error));
+      .then((response) => response.json())
+      .then((response) => console.log("Success:", JSON.stringify(response)))
+      .catch((error) => console.error("Error:", error));
   };
 
-  const handleInput = evt => {
+  const handleInput = (evt) => {
     const name = evt.target.name;
     const newValue = evt.target.value;
     setFormInput({ [name]: newValue });
@@ -90,10 +90,16 @@ export function SignUpForm(props) {
             name="last_name"
             defaultValue={formInput.name}
             className={classes.textField}
-            helperText="e.g. Mcdonald"
+            helperText="e.g. McGyver"
             onChange={handleInput}
           />
-          <Checkboxes/>
+          <TextField
+            id="age"
+            name="age"
+            label="Age"
+            type="number"
+            className={classes.textField}
+          />
           <TextField
             label="Email"
             id="margin-normal"
@@ -113,6 +119,7 @@ export function SignUpForm(props) {
             helperText="Enter password"
             onChange={handleInput}
           />
+          <Checkboxes />
           <Button
             type="submit"
             variant="contained"
@@ -126,4 +133,3 @@ export function SignUpForm(props) {
     </div>
   );
 }
-
