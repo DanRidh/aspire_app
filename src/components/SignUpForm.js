@@ -8,25 +8,9 @@ export function SignUpForm(props) {
     button: {
       margin: theme.spacing(1),
     },
-    leftIcon: {
-      marginRight: theme.spacing(1),
-    },
-    rightIcon: {
-      marginLeft: theme.spacing(1),
-    },
-    iconSmall: {
-      fontSize: 20,
-    },
-    root: {
-      padding: theme.spacing(3, 2),
-    },
-    container: {
-      display: "flex",
-      flexWrap: "wrap",
-    },
     textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
+      // marginLeft: theme.spacing(1),
+      // marginRight: theme.spacing(1),
       width: 400,
     },
   }));
@@ -68,7 +52,7 @@ export function SignUpForm(props) {
 
   return (
     <div>
-      <Paper elevation={0}  className={classes.root}>
+      <Paper elevation={0}>
         <Typography variant="h5" component="h3">
           {props.formName}
         </Typography>

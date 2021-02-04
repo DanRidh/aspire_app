@@ -114,7 +114,7 @@ let LoginModal=({ loggedIn ,setLoggedIn})=>{
             open={openRegister}
             onClose={handleCloseRegister}
             >
-                <Paper className={classes.paper}>
+                <Paper className={classes.paper} style={{height: "60vh"}}>
                     <Typography variant="h6">Register a {accType} account.</Typography>
                     <SignUpForm />
                 </Paper>
