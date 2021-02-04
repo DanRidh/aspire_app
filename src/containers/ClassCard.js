@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Card() {
+export default function ClassCard({profilePhoto, username}) {
   const classes = useStyles({profilePhoto,username});
   const [expanded, setExpanded] = React.useState(false);
 
