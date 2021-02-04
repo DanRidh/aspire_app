@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../images/logo-white.png";
 
 const Footer = () => {
+  // TODO: Fix footer overlaps with web content on smaller screens
   return (
     <>
       <div className="footer">
