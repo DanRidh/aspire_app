@@ -19,20 +19,20 @@ const Footer = () => {
           © 2021 ASPIRE and any associated logos are trademarks, service marks,
           and/or registered trademarks of ASPIRE.
         </p>
-        <div class="footer-links">
+        <div className="footer-links">
           <ul>
             <li>
-              <a class="" href="#" target="_blank">
+              <a className="" href="#" target="_blank">
                 Privacy Notice
               </a>
             </li>
             <li>
-              <a class="" href="#" target="_blank">
+              <a className="" href="#" target="_blank">
                 Terms of Service
               </a>
             </li>
             <li>
-              <a class="" href="javascript:void(0);" target="">
+              <a className="" href="javascript:void(0);" target="">
                 Cookie Preferences
               </a>
             </li>
