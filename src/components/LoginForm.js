@@ -67,7 +67,7 @@ export function LoginForm(props) {
 
   return (
     <div>
-      <Paper className={classes.root}>
+      <Paper elevation={0}  className={classes.root}>
         <Typography variant="h5" component="h3">
           {props.formName}
         </Typography>

@@ -22,8 +22,8 @@ function App() {
 
   return (
     <>
-      <Navbar></Navbar>
-      {/* <LandingPage></LandingPage> */}
+      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} ></Navbar>
+      <LandingPage></LandingPage>
 
       {/* <Navbar loggedIn={loggedIn} />
       <Route exact path="/" component={Homepage} />
@@ -36,6 +36,7 @@ function App() {
 
       <CreateNewTutorSessionPage></CreateNewTutorSessionPage>
       {/* <TutorProfilePage></TutorProfilePage> */}
+
 
       <Footer></Footer>
     </>
