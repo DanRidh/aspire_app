@@ -1,7 +1,7 @@
-import React, { useReducer } from "react";
-import { Button, TextField, Paper, Typography } from "@material-ui/core";
+import React, { useState } from "react";
+import { Button, TextField, Paper, Typography, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Checkboxes from "./Checkboxes";
+import RadioGroup from './RadioGroup'
 
 export function SignUpForm(props) {
   const useStyles = makeStyles((theme) => ({
@@ -14,41 +14,36 @@ export function SignUpForm(props) {
       width: 400,
     },
   }));
+  
+  const classes = useStyles()
 
-  const [formInput, setFormInput] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
-    {
-      name: "",
-      email: "",
-    }
-  );
+  // form input states
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [age, setAge] = useState(0)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [isFemale, setIsFemale] = useState(false)
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
+  // input handlers
+  const handleFirstName=e=>{setFirstName(e.target.value)}
+  const handleLastName=e=>{setLastName(e.target.value)}
 
-    let data = { formInput };
+  // needed? 
+  const handleAge=e=>{setAge(e.target.value)} 
 
-    fetch("https://pointy-gauge.glitch.me/api/form", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => console.log("Success:", JSON.stringify(response)))
-      .catch((error) => console.error("Error:", error));
-  };
+  const handleEmail=e=>{setAge(e.target.value)}
+  const handlePassword=e=>{setPassword(e.target.value)}
 
-  const handleInput = (evt) => {
-    const name = evt.target.name;
-    const newValue = evt.target.value;
-    setFormInput({ [name]: newValue });
-  };
+  // const handleIsFemale=e=>{setIsFemale(e.target.value)} // probably not needed
 
-  const classes = useStyles();
 
-  console.log(props);
+  const handleSubmit=(e)=>{
+    e.prevent.default()
+  }
+  console.log("isFemale?", isFemale)
+  
+
 
   return (
     <div>
@@ -59,57 +54,55 @@ export function SignUpForm(props) {
         <Typography component="p">{props.formDescription}</Typography>
 
         <form onSubmit={handleSubmit}>
-          <TextField
+          <TextField 
             label="First Name"
-            id="margin-normal"
-            name="first_name"
-            defaultValue={formInput.name}
+            id="margin-normal" 
+            name="first_name" 
+            defaultValue={firstName}
             className={classes.textField}
             helperText="e.g. David"
-            onChange={handleInput}
+            onChange={handleFirstName}
           />
           <TextField
             label="Last Name"
             id="margin-normal"
             name="last_name"
-            defaultValue={formInput.name}
+            defaultValue={lastName}
             className={classes.textField}
             helperText="e.g. McGyver"
-            onChange={handleInput}
+            onChange={handleLastName}
           />
           <TextField
             id="age"
             name="age"
             label="Age"
             type="number"
+            defaultValue={age}
             className={classes.textField}
           />
           <TextField
             label="Email"
             id="margin-normal"
             name="email"
-            defaultValue={formInput.email}
+            defaultValue={email}
             className={classes.textField}
             helperText="e.g. name@gmail.com"
-            onChange={handleInput}
+            onChange={handleEmail}
           />
           <TextField
             label="Password"
             type="password"
             id="margin-normal"
             name="email"
-            defaultValue={formInput.password}
+            defaultValue={password}
             className={classes.textField}
             helperText="Enter password"
-            onChange={handleInput}
+            onChange={handlePassword}
           />
-          <Checkboxes />
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.button}
-          >
+          <Container>
+            <RadioGroup setIsFemale={setIsFemale} isFemale={isFemale} />
+          </Container>
+          <Button type="submit" variant="contained" color="primary" className={classes.button}>
             Submit
           </Button>
         </form>
