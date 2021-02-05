@@ -39,11 +39,11 @@ export function SignUpForm(props) {
         <Typography component="p">{props.formDescription}</Typography>
 
         <form onSubmit={handleSubmit}>
-          <TextField
+          <TextField 
             label="First Name"
-            id="margin-normal"
-            name="first_name"
-            defaultValue={formInput.name}
+            id="margin-normal" 
+            name="first_name" 
+            defaultValue={firstName}
             className={classes.textField}
             helperText="e.g. David"
             onChange={handleInput}
@@ -52,7 +52,7 @@ export function SignUpForm(props) {
             label="Last Name"
             id="margin-normal"
             name="last_name"
-            defaultValue={formInput.name}
+            defaultValue={lastName}
             className={classes.textField}
             helperText="e.g. McGyver"
             onChange={handleInput}
@@ -62,13 +62,14 @@ export function SignUpForm(props) {
             name="age"
             label="Age"
             type="number"
+            defaultValue={age}
             className={classes.textField}
           />
           <TextField
             label="Email"
             id="margin-normal"
             name="email"
-            defaultValue={formInput.email}
+            defaultValue={email}
             className={classes.textField}
             helperText="e.g. name@gmail.com"
             onChange={handleInput}
@@ -78,18 +79,13 @@ export function SignUpForm(props) {
             type="password"
             id="margin-normal"
             name="email"
-            defaultValue={formInput.password}
+            defaultValue={password}
             className={classes.textField}
             helperText="Enter password"
             onChange={handleInput}
           />
           <Checkboxes />
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.button}
-          >
+          <Button type="submit" variant="contained" color="primary" className={classes.button}>
             Submit
           </Button>
         </form>
