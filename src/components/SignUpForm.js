@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useState } from "react";
 import { Button, TextField, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Checkboxes from "./Checkboxes";
@@ -15,40 +15,20 @@ export function SignUpForm(props) {
     },
   }));
 
-  const [formInput, setFormInput] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
-    {
-      name: "",
-      email: "",
-    }
-  );
+  // form input states
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [age, setAge] = useState(0)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [isFemale, setIsFemale] = useState(false)
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
 
-    let data = { formInput };
+  const handleSubmit=(e)=>{
+    e.prevent.default()
+  }
 
-    fetch("https://pointy-gauge.glitch.me/api/form", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => console.log("Success:", JSON.stringify(response)))
-      .catch((error) => console.error("Error:", error));
-  };
 
-  const handleInput = (evt) => {
-    const name = evt.target.name;
-    const newValue = evt.target.value;
-    setFormInput({ [name]: newValue });
-  };
-
-  const classes = useStyles();
-
-  console.log(props);
 
   return (
     <div>
