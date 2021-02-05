@@ -48,7 +48,10 @@ export function SignUpForm(props) {
     setAge(e.target.value)
     validateAge(e.target.value)
   }
-  const handleEmail=e=>{setEmail(e.target.value)}
+  const handleEmail=e=>{
+    setEmail(e.target.value)
+    validateEmail(e.target.value)
+  }
   const handlePassword=e=>{setPassword(e.target.value)}
 
   // event handler
@@ -59,6 +62,7 @@ export function SignUpForm(props) {
 
   // Input validations
   // first name and last name validation handled by textField 'required' state.
+  // age
   const validateAge=(age)=>{
     if (age<1){
       setAgeError(true)
@@ -71,14 +75,27 @@ export function SignUpForm(props) {
       setAgeHelper("You're more than 150 years old? You can hold a Guiness World Record!")
       return true
     }
-    
+    else {
+      setAgeError(false)
+      setAgeHelper("")
+      return false
+    }
   }
 
-  // age < 150
-
-
   // email
-  // must be email format
+  const validateEmail=(email)=>{
+    const mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
+    if (!email.match(mailformat))
+    {
+      setEmailError(true)
+      setEmailHelper('Email address format is invalid.')
+    } else{
+      setEmailError(false)
+      setEmailHelper('')
+
+    }
+  }
 
   // password  
   // - uppercase, lowercase, special_char and number
