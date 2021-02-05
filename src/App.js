@@ -4,13 +4,15 @@ import { Redirect, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Tutors from "./components/Tutors";
-import TutorProfilePage from "./pages/TutorProfilePage";
-import MyProfilePage from "./pages/MyProfilePage";
-import Homepage from "./pages/Homepage";
-import LandingPage from "./pages/Landingpage";
-import StudentProfilePage from "./pages/StudentProfilePage";
 import Footer from "./components/Footer";
+
+import Homepage from "./pages/Homepage";
 import SignUpPage from "./pages/SignUpPage";
+import LandingPage from "./pages/Landingpage";
+import MyProfilePage from "./pages/MyProfilePage";
+import TutorProfilePage from "./pages/TutorProfilePage";
+import StudentProfilePage from "./pages/StudentProfilePage";
+import CreateNewTutorSessionPage from "./pages/CreateNewTutorSessionPage";
 
 function App() {
   // loggedIn state
@@ -31,6 +33,10 @@ function App() {
       <Route path="/tutor/:id" component={TutorProfilePage} />
       <Route path="student/:id" component={StudentProfilePage} /> */}
       {/* <SignUpPage></SignUpPage> */}
+
+      <CreateNewTutorSessionPage></CreateNewTutorSessionPage>
+      {/* <TutorProfilePage></TutorProfilePage> */}
+
 
       <Footer></Footer>
     </>
