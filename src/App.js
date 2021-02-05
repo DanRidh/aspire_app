@@ -34,8 +34,8 @@ function App() {
       <Route path="student/:id" component={StudentProfilePage} /> */}
       {/* <SignUpPage></SignUpPage> */}
 
-      {/* <CreateNewTutorSessionPage></CreateNewTutorSessionPage> */}
-      <TutorProfilePage></TutorProfilePage>
+      <CreateNewTutorSessionPage></CreateNewTutorSessionPage>
+      {/* <TutorProfilePage></TutorProfilePage> */}
 
       <Footer></Footer>
     </>
