@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, TextField, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Checkboxes from "./Checkboxes";
 
 export function SignUpForm(props) {
   const useStyles = makeStyles((theme) => ({
@@ -84,7 +83,6 @@ export function SignUpForm(props) {
             helperText="Enter password"
             onChange={handleInput}
           />
-          <Checkboxes />
           <Button type="submit" variant="contained" color="primary" className={classes.button}>
             Submit
           </Button>
