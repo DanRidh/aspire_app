@@ -28,14 +28,9 @@ export function SignUpForm(props) {
   // input handlers
   const handleFirstName=e=>{setFirstName(e.target.value)}
   const handleLastName=e=>{setLastName(e.target.value)}
-
-  // needed? 
-  const handleAge=e=>{setAge(e.target.value)} 
-
   const handleEmail=e=>{setAge(e.target.value)}
   const handlePassword=e=>{setPassword(e.target.value)}
 
-  // const handleIsFemale=e=>{setIsFemale(e.target.value)} // probably not needed
 
 
   const handleSubmit=(e)=>{
