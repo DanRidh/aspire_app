@@ -13,6 +13,9 @@ export function SignUpForm(props) {
       // marginRight: theme.spacing(1),
       width: 400,
     },
+    helperText:{
+      textAlign:'center'
+    }
   }));
   
   const classes = useStyles()
@@ -26,8 +29,8 @@ export function SignUpForm(props) {
   const [isFemale, setIsFemale] = useState(false)
 
 // input validation helper texts and error states
-  const [fNameError, setFNameError]=useState(false)
-  const [lNameError, setLNameError]=useState(false)
+  // const [fNameError, setFNameError]=useState(false)
+  // const [lNameError, setLNameError]=useState(false)
   const [ageError, setAgeError]=useState(false)
   const [emailError, setEmailError]=useState(false)
   const [passwordError, setPasswordError]=useState(false)
@@ -39,17 +42,12 @@ export function SignUpForm(props) {
   const [passwordHelper, setPasswordHelper]=useState(false)
 
   // input handlers
-  const handleFirstName=e=>{
-    var fName = e.target.value
-    setFirstName(fName)
-    
-    if (!validateName(fName)){
-
-    }
-
-    
-  }
+  const handleFirstName=e=>{setFirstName(e.target.value)}
   const handleLastName=e=>{setLastName(e.target.value)}
+  const handleAge=e=>{
+    setAge(e.target.value)
+    validateAge(e.target.value)
+  }
   const handleEmail=e=>{setEmail(e.target.value)}
   const handlePassword=e=>{setPassword(e.target.value)}
 
@@ -60,14 +58,18 @@ export function SignUpForm(props) {
   }
 
   // Input validations
-  // firstName & lastName
-  const validateName=(name)=>{
-
-    if (!name.length){
+  // first name and last name validation handled by textField 'required' state.
+  const validateAge=(age)=>{
+    if (age<1){
+      setAgeError(true)
+      setAgeHelper("Age cannot be zero.")
       return true
     } 
-    if (name.length<6){
-      return false
+
+    if (age>150){
+      setAgeError(true)
+      setAgeHelper("You're more than 150 years old? You can hold a Guiness World Record!")
+      return true
     }
     
   }
@@ -98,7 +100,6 @@ export function SignUpForm(props) {
         <form onSubmit={handleSubmit}>
           <TextField 
             required
-            error={fNameError}
             label="First Name"
             id="margin-normal" 
             name="first_name" 
@@ -107,11 +108,10 @@ export function SignUpForm(props) {
             helperText="e.g. David"
             onChange={handleFirstName}
           />
-          <FormHelperText>{fNameHelper}</FormHelperText>
+          <FormHelperText className={classes.helperText}>{fNameHelper}</FormHelperText>
 
           <TextField
             required
-            error={lNameError}
             label="Last Name"
             id="margin-normal"
             name="last_name"
@@ -120,7 +120,7 @@ export function SignUpForm(props) {
             helperText="e.g. McGyver"
             onChange={handleLastName}
           />
-          <FormHelperText>{lNameHelper}</FormHelperText>
+          <FormHelperText className={classes.helperText}>{lNameHelper}</FormHelperText>
 
           <TextField
             required
@@ -130,9 +130,10 @@ export function SignUpForm(props) {
             label="Age"
             type="number"
             defaultValue={age}
+            onChange={handleAge}
             className={classes.textField}
           />
-          <FormHelperText>{ageHelper}</FormHelperText>
+          <FormHelperText className={classes.helperText}>{ageHelper}</FormHelperText>
 
           <TextField
             required
@@ -145,7 +146,7 @@ export function SignUpForm(props) {
             helperText="e.g. name@gmail.com"
             onChange={handleEmail}
           />
-          <FormHelperText>{emailHelper}</FormHelperText>
+          <FormHelperText className={classes.helperText}>{emailHelper}</FormHelperText>
 
           <TextField
             required
@@ -159,7 +160,7 @@ export function SignUpForm(props) {
             helperText="Enter password"
             onChange={handlePassword}
           />
-          <FormHelperText>{passwordHelper}</FormHelperText>
+          <FormHelperText className={classes.helperText}>{passwordHelper}</FormHelperText>
 
           <Container>
             <RadioGroup setIsFemale={setIsFemale} />
