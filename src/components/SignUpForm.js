@@ -43,18 +43,25 @@ export function SignUpForm(props) {
 
   // input handlers
   const handleFirstName=e=>{setFirstName(e.target.value)}
+
   const handleLastName=e=>{setLastName(e.target.value)}
+
   const handleAge=e=>{
     setAge(e.target.value)
     validateAge(e.target.value)
   }
+
   const handleEmail=e=>{
     setEmail(e.target.value)
     validateEmail(e.target.value)
   }
-  const handlePassword=e=>{setPassword(e.target.value)}
 
-  // event handler
+  const handlePassword=e=>{
+    setPassword(e.target.value)
+    validatePw(e.target.value)
+  }
+
+  // form event handler
   const handleSubmit=(e)=>{
     e.prevent.default()
     // make api call to create new user if validations ok
@@ -100,11 +107,31 @@ export function SignUpForm(props) {
   // password  
   // - uppercase, lowercase, special_char and number
   // - min 6 characters
+  const validatePw=pw=>{
+    const pwformat= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/
 
- 
+    // const lower = pw.search('[a-z]') 
+    // const upper = pw.match(/^[A-Z]/)
+    // const num = pw.match(/^[0-9]/)
+    // const special_char=pw.match(/[~`!@#$%^&*()_+-=}{\[\]}<>,.?]/)
 
 
-  console.log("isFemale?", isFemale)
+    if (pw.length<6){
+      setPasswordError(true)
+      setPasswordHelper("Password requirements: min. 6 letters, ")
+    } else if ( !pw.match(pwformat)){
+      setPasswordError(true)
+      setPasswordHelper("1 uppercase, 1 lowercase, and 1 special character")
+    } else{
+      setPasswordError(false)
+      setPasswordHelper("")
+    }
+
+  }
+
+  console.log(password)
+
+
 
   return (
     <div>
