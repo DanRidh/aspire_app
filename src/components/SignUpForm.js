@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, TextField, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import RadioGroup from './RadioGroup'
 
 export function SignUpForm(props) {
   const useStyles = makeStyles((theme) => ({
@@ -13,6 +14,8 @@ export function SignUpForm(props) {
       width: 400,
     },
   }));
+  
+  const classes = useStyles()
 
   // form input states
   const [firstName, setFirstName] = useState("")
@@ -22,11 +25,23 @@ export function SignUpForm(props) {
   const [password, setPassword] = useState("")
   const [isFemale, setIsFemale] = useState(false)
 
+  // input handlers
+  const handleFirstName=e=>{setFirstName(e.target.value)}
+  const handleLastName=e=>{setLastName(e.target.value)}
+
+  // needed? 
+  const handleAge=e=>{setAge(e.target.value)} 
+
+  const handleEmail=e=>{setAge(e.target.value)}
+  const handlePassword=e=>{setPassword(e.target.value)}
+
+  // const handleIsFemale=e=>{setIsFemale(e.target.value)} // probably not needed
+
 
   const handleSubmit=(e)=>{
     e.prevent.default()
   }
-
+  
 
 
   return (
@@ -83,6 +98,7 @@ export function SignUpForm(props) {
             helperText="Enter password"
             onChange={handleInput}
           />
+          <RadioGroup setIsFemale={setIsFemale} />
           <Button type="submit" variant="contained" color="primary" className={classes.button}>
             Submit
           </Button>
