@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, TextField, Paper, Typography } from "@material-ui/core";
+import { Button, TextField, Paper, Typography, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import RadioGroup from './RadioGroup'
 
@@ -41,6 +41,7 @@ export function SignUpForm(props) {
   const handleSubmit=(e)=>{
     e.prevent.default()
   }
+  console.log("isFemale?", isFemale)
   
 
 
@@ -60,7 +61,7 @@ export function SignUpForm(props) {
             defaultValue={firstName}
             className={classes.textField}
             helperText="e.g. David"
-            onChange={handleInput}
+            onChange={handleFirstName}
           />
           <TextField
             label="Last Name"
@@ -69,7 +70,7 @@ export function SignUpForm(props) {
             defaultValue={lastName}
             className={classes.textField}
             helperText="e.g. McGyver"
-            onChange={handleInput}
+            onChange={handleLastName}
           />
           <TextField
             id="age"
@@ -86,7 +87,7 @@ export function SignUpForm(props) {
             defaultValue={email}
             className={classes.textField}
             helperText="e.g. name@gmail.com"
-            onChange={handleInput}
+            onChange={handleEmail}
           />
           <TextField
             label="Password"
@@ -96,9 +97,11 @@ export function SignUpForm(props) {
             defaultValue={password}
             className={classes.textField}
             helperText="Enter password"
-            onChange={handleInput}
+            onChange={handlePassword}
           />
-          <RadioGroup setIsFemale={setIsFemale} />
+          <Container>
+            <RadioGroup setIsFemale={setIsFemale} isFemale={isFemale} />
+          </Container>
           <Button type="submit" variant="contained" color="primary" className={classes.button}>
             Submit
           </Button>
