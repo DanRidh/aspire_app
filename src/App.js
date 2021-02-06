@@ -23,10 +23,13 @@ function App() {
   return (
     <>
       <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} ></Navbar>
-      <LandingPage></LandingPage>
+      
+      <Route exact path="/" component={LandingPage}/>
 
-      {/* <Navbar loggedIn={loggedIn} />
-      <Route exact path="/" component={Homepage} />
+      <Route exact path="/home">
+        {!loggedIn ? <Redirect to="/" /> : <Homepage />}
+      </Route>
+      
       <Route exact path="/profile">
         {!loggedIn ? <Redirect to="/" /> : <MyProfilePage />}
       </Route>
@@ -34,7 +37,7 @@ function App() {
       <Route path="student/:id" component={StudentProfilePage} /> */}
       {/* <SignUpPage></SignUpPage> */}
 
-      <CreateNewTutorSessionPage></CreateNewTutorSessionPage>
+      {/* <CreateNewTutorSessionPage></CreateNewTutorSessionPage> */}
       {/* <TutorProfilePage></TutorProfilePage> */}
 
 
