@@ -7,7 +7,6 @@ import Tutors from "./components/Tutors";
 import Footer from "./components/Footer";
 
 import Homepage from "./pages/Homepage";
-import SignUpPage from "./pages/SignUpPage";
 import LandingPage from "./pages/Landingpage";
 import MyProfilePage from "./pages/MyProfilePage";
 import TutorProfilePage from "./pages/TutorProfilePage";
@@ -23,18 +22,21 @@ function App() {
   return (
     <>
       <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} ></Navbar>
-      <LandingPage></LandingPage>
+      
+      <Route exact path="/" component={LandingPage}/>
 
-      {/* <Navbar loggedIn={loggedIn} />
-      <Route exact path="/" component={Homepage} />
+      <Route exact path="/home">
+        {!loggedIn ? <Redirect to="/" /> : <Homepage />}
+      </Route>
+      
       <Route exact path="/profile">
         {!loggedIn ? <Redirect to="/" /> : <MyProfilePage />}
       </Route>
       <Route path="/tutor/:id" component={TutorProfilePage} />
-      <Route path="student/:id" component={StudentProfilePage} /> */}
-      {/* <SignUpPage></SignUpPage> */}
+      <Route path="student/:id" component={StudentProfilePage} />
 
-      <CreateNewTutorSessionPage></CreateNewTutorSessionPage>
+
+      {/* <CreateNewTutorSessionPage></CreateNewTutorSessionPage> */}
       {/* <TutorProfilePage></TutorProfilePage> */}
 
 

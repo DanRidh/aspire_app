@@ -87,7 +87,7 @@ export function SignUpForm({accType,setLoggedIn}) {
         .then(res=>{
             console.log(res)
 
-            // log user in,set log in true, close modal
+            // log user in,set log in true, redirect to homepage
             localStorage.setItem('jwt',res.data.token)
             localStorage.setItem('id', res.data.student.id)
             localStorage.setItem('accType',"student")
@@ -117,6 +117,15 @@ export function SignUpForm({accType,setLoggedIn}) {
         })
         .then(res=>{
           console.log(res)
+
+          // log user in,set log in true, redirect to homepage
+          localStorage.setItem('jwt',res.data.token)
+          localStorage.setItem('id', res.data.student.id)
+          localStorage.setItem('accType',"student")
+
+          setLoggedIn(true)
+          
+          // Load homepage
           history.push("/home")
 
         })
