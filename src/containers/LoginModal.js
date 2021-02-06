@@ -34,7 +34,6 @@ let LoginModal=({ loggedIn ,setLoggedIn})=>{
     const handleCloseStudentTutor=()=>{setOpenStudentTutor(false)}
     const handleCloseRegister=()=>{setOpenRegister(false)}
     const handleCloseSignIn=()=>{setOpenSignIn(false)}
-    
 
     // Other states - register/sign up, student/tutor
     const [register, setRegister] = useState(true)
@@ -115,8 +114,8 @@ let LoginModal=({ loggedIn ,setLoggedIn})=>{
             onClose={handleCloseRegister}
             >
                 <Paper className={classes.paper} style={{height: "60vh"}}>
-                    <Typography variant="h6">Register a {accType} account.</Typography>
-                    <SignUpForm />
+                    <Typography variant="h6">Register a {accType} account</Typography>
+                    <SignUpForm accType={accType} setLoggedIn={setLoggedIn}/>
                 </Paper>
 
             </Modal>
@@ -128,7 +127,7 @@ let LoginModal=({ loggedIn ,setLoggedIn})=>{
             onClose={handleCloseSignIn}
             >
                 <Paper className={classes.paper}>
-                    <Typography variant="h6">Sign in to your {accType} account.</Typography>
+                    <Typography variant="h6">Sign in to your {accType} account</Typography>
                     <LoginForm/>
                 </Paper>
             </Modal>
