@@ -6,26 +6,25 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormHelperText from '@material-ui/core/FormHelperText'
 
-export default function RadioButtonsGroup({setIsFemale}) {
-  const [value, setValue] = React.useState('female');
-  const [error, setError] = React.useState(false);
-  const [helperText, setHelperText] = React.useState('');
+export default function RadioButtonsGroup({setIsFemale,isFemale}) {
+    const [value, setValue] = React.useState('female');
+    const [error, setError] = React.useState(false);
+    const [helperText, setHelperText] = React.useState('');
 
-  const handleChange = (e) => {
+    const handleChange = (e) => {
     setValue(e.target.value);
+    };
 
+    // leaving setISFemale outside of handleChange
+    // because value is not rendered until end of event handler
     if (value ==="female"){
         setIsFemale(true)
-    } else{
+    } 
+    else{
         setIsFemale(false)
     }
 
-    if (!value){
-        setError(true)
-        setHelperText("Please choose one.")
-    }
 
-  };
 
   return (
         <FormControl error={error} component="fieldset">

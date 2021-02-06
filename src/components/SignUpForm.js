@@ -1,16 +1,18 @@
-import React, { useState } from "react";
-import { Button, TextField, Paper, Typography, Container, FormHelperText } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
 import RadioGroup from './RadioGroup'
+import React, { useState } from "react";
+import {useHistory} from 'react-router-dom'
+import { makeStyles } from "@material-ui/core/styles";
+import { Button, TextField, Paper, Typography, Container, FormHelperText } from "@material-ui/core";
 
-export function SignUpForm(props) {
+import {Redirect} from 'react-router-dom'
+
+export function SignUpForm({accType,setLoggedIn}) {
   const useStyles = makeStyles((theme) => ({
     button: {
       margin: theme.spacing(1),
     },
     textField: {
-      // marginLeft: theme.spacing(1),
-      // marginRight: theme.spacing(1),
       width: 400,
     },
     helperText:{
@@ -19,29 +21,26 @@ export function SignUpForm(props) {
   }));
   
   const classes = useStyles()
+  const history=useHistory()
 
-  // form input states
+  // -------------- form input states --------------
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [age, setAge] = useState()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [isFemale, setIsFemale] = useState(false)
+  const [isFemale, setIsFemale] = useState(true)
 
-// input validation helper texts and error states
-  // const [fNameError, setFNameError]=useState(false)
-  // const [lNameError, setLNameError]=useState(false)
+// ----- states for errors & helper texts for input validations -----
   const [ageError, setAgeError]=useState(false)
   const [emailError, setEmailError]=useState(false)
   const [passwordError, setPasswordError]=useState(false)
 
-  const [fNameHelper, setFNameHelper]=useState(false)
-  const [lNameHelper, setLNameHelper]=useState(false)
   const [ageHelper, setAgeHelper]=useState(false)
   const [emailHelper, setEmailHelper]=useState(false)
   const [passwordHelper, setPasswordHelper]=useState(false)
 
-  // input handlers
+  // ------------------- onChange input handlers -------------------
   const handleFirstName=e=>{setFirstName(e.target.value)}
 
   const handleLastName=e=>{setLastName(e.target.value)}
@@ -61,14 +60,73 @@ export function SignUpForm(props) {
     validatePw(e.target.value)
   }
 
-  // form event handler
-  const handleSubmit=(e)=>{
-    e.prevent.default()
-    // make api call to create new user if validations ok
-  }
+  // -------------------onSubmit form event handler -------------------
+  const handleSubmit=()=>{
+    console.log('user details: ',firstName,lastName,email,password,age,isFemale)
+    console.log(ageError,emailError,passwordError)
+    console.log('user details: ',firstName,lastName,email,password,age,isFemale)
+    console.log(accType)
 
-  // Input validations
-  // first name and last name validation handled by textField 'required' state.
+    // if no errors in validation
+    if (!ageError && !emailError && !passwordError){
+      console.log(accType)
+      if (accType==="student"){
+        // create student account
+        axios({
+          method: 'POST',
+          url: 'https://aspire-api2021.herokuapp.com/api/v1/students/',
+          data:{
+            first_name: firstName,
+            last_name : lastName,
+            email : email,
+            password : password,
+            age : age,
+            is_female :isFemale,
+          }
+        })
+        .then(res=>{
+            console.log(res)
+
+            // log user in,set log in true, close modal
+            localStorage.setItem('jwt',res.data.token)
+            localStorage.setItem('id', res.data.student.id)
+            localStorage.setItem('accType',"student")
+
+            setLoggedIn(true)
+            
+            // Load homepage
+            history.push("/home")
+
+          })
+        .catch(err=>console.group(err))
+      }
+
+      else{
+        //create tutor account
+        axios({
+          method: 'POST',
+          url:'https://aspire-api2021.herokuapp.com/api/v1/tutors/',
+          data:{
+            first_name: firstName,
+            last_name : lastName,
+            email : email,
+            password : password,
+            age : age,
+            is_female :isFemale
+          }
+        })
+        .then(res=>{
+          console.log(res)
+          history.push("/home")
+
+        })
+        .catch(err=>{console.log(err)})
+        }
+    }
+  }
+  
+
+  // ----------------------- Input validations -----------------------
   // age
   const validateAge=(age)=>{
     if (age<1){
@@ -104,9 +162,7 @@ export function SignUpForm(props) {
     }
   }
 
-  // password  
-  // - uppercase, lowercase, special_char and number
-  // - min 6 characters
+  // password  - uppercase, lowercase, special_char and number & min 6 characters
   const validatePw=pw=>{
     const pwformat= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/
 
@@ -129,19 +185,11 @@ export function SignUpForm(props) {
 
   }
 
-  console.log(password)
-
-
 
   return (
     <div>
       <Paper elevation={0}>
-        <Typography variant="h5" component="h3">
-          {props.formName}
-        </Typography>
-        <Typography component="p">{props.formDescription}</Typography>
-
-        <form onSubmit={handleSubmit}>
+        <form >
           <TextField 
             required
             label="First Name"
@@ -152,7 +200,6 @@ export function SignUpForm(props) {
             helperText="e.g. David"
             onChange={handleFirstName}
           />
-          <FormHelperText className={classes.helperText}>{fNameHelper}</FormHelperText>
 
           <TextField
             required
@@ -164,7 +211,6 @@ export function SignUpForm(props) {
             helperText="e.g. McGyver"
             onChange={handleLastName}
           />
-          <FormHelperText className={classes.helperText}>{lNameHelper}</FormHelperText>
 
           <TextField
             required
@@ -207,9 +253,9 @@ export function SignUpForm(props) {
           <FormHelperText className={classes.helperText}>{passwordHelper}</FormHelperText>
 
           <Container>
-            <RadioGroup setIsFemale={setIsFemale} />
+            <RadioGroup setIsFemale={setIsFemale} isFemale={isFemale} />
           </Container>
-          <Button type="submit" variant="contained" color="primary" className={classes.button}>
+          <Button onClick={handleSubmit} variant="contained" color="primary" className={classes.button}>
             Submit
           </Button>
         </form>
