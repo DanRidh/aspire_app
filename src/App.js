@@ -11,6 +11,8 @@ import LandingPage from "./pages/Landingpage";
 import MyProfilePage from "./pages/MyProfilePage";
 import TutorProfilePage from "./pages/TutorProfilePage";
 import StudentProfilePage from "./pages/StudentProfilePage";
+import TutorSessionsPage from "./pages/ViewTutorSessionPage";
+import ViewTutorSessionPage from "./pages/ViewTutorSessionPage";
 import CreateNewTutorSessionPage from "./pages/CreateNewTutorSessionPage";
 
 function App() {
@@ -21,9 +23,11 @@ function App() {
 
   return (
     <>
-      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} ></Navbar>
+
+      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn}></Navbar>
       
       <Route exact path="/" component={LandingPage}/>
+
 
       <Route exact path="/home">
         {!loggedIn ? <Redirect to="/" /> : <Homepage />}
@@ -37,8 +41,10 @@ function App() {
 
 
       {/* <CreateNewTutorSessionPage></CreateNewTutorSessionPage> */}
-      {/* <TutorProfilePage></TutorProfilePage> */}
 
+      <ViewTutorSessionPage tutorSessionId="Pass in tutor session id here"></ViewTutorSessionPage>
+
+      {/* <TutorProfilePage></TutorProfilePage> */}
 
       <Footer></Footer>
     </>
