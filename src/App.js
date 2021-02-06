@@ -12,6 +12,8 @@ import LandingPage from "./pages/Landingpage";
 import MyProfilePage from "./pages/MyProfilePage";
 import TutorProfilePage from "./pages/TutorProfilePage";
 import StudentProfilePage from "./pages/StudentProfilePage";
+import TutorSessionsPage from "./pages/ViewTutorSessionPage";
+import ViewTutorSessionPage from "./pages/ViewTutorSessionPage";
 import CreateNewTutorSessionPage from "./pages/CreateNewTutorSessionPage";
 
 function App() {
@@ -22,8 +24,8 @@ function App() {
 
   return (
     <>
-      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} ></Navbar>
-      <LandingPage></LandingPage>
+      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn}></Navbar>
+      {/* <LandingPage></LandingPage> */}
 
       {/* <Navbar loggedIn={loggedIn} />
       <Route exact path="/" component={Homepage} />
@@ -34,9 +36,9 @@ function App() {
       <Route path="student/:id" component={StudentProfilePage} /> */}
       {/* <SignUpPage></SignUpPage> */}
 
-      <CreateNewTutorSessionPage></CreateNewTutorSessionPage>
+      {/* <CreateNewTutorSessionPage></CreateNewTutorSessionPage> */}
+      <ViewTutorSessionPage tutorSessionId="Pass in tutor session id here"></ViewTutorSessionPage>
       {/* <TutorProfilePage></TutorProfilePage> */}
-
 
       <Footer></Footer>
     </>
