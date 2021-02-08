@@ -13,6 +13,7 @@ import EventIcon from "@material-ui/icons/Event";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Button } from "@material-ui/core";
 import image from "../images/8600.jpg";
+import ClassCard from "../containers/ClassCard";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -223,6 +224,7 @@ const ViewTutorSessionPage = ({ id }) => {
             </Paper>
           </Grid>
         </Grid>
+        <ClassCard></ClassCard>
       </div>
     </>
   );
