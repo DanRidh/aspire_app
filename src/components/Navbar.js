@@ -10,6 +10,7 @@ import logo from "../images/logo.png";
 import { useState } from "react";
 import LoginModal from "../containers/LoginModal";
 import {Link} from 'react-router-dom'
+import Logout from "../containers/Logout";
 
 function Navbar({ loggedIn, setLoggedIn }) {
   const useStyles = makeStyles(()=>({
@@ -19,9 +20,6 @@ function Navbar({ loggedIn, setLoggedIn }) {
     }
   }))
   const classes = useStyles()
-
-  const [isOpen, setIsOpen] = useState(false)
-  // const toggle = () => setIsOpen(!isOpen);
 
   return (
     <>
@@ -49,18 +47,23 @@ function Navbar({ loggedIn, setLoggedIn }) {
           </Link>
 
           <Typography variant="h6" style={{ flexGrow: 1 }}></Typography>
-          <Link to="/home" className={classes.link}>
-            <Typography>Home</Typography>
-          </Link>
+
 
           {loggedIn ? (
-            <IconButton color="inherit" aria-label="account">
-              <AccountCircle />
-            </IconButton>
-          ) : (
             <>
-              <LoginModal loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
-            </>
+              <Link to="/home" className={classes.link}>
+                <Typography>Home</Typography>
+              </Link>
+              <Logout setLoggedIn={setLoggedIn}/>
+
+                <IconButton color="inherit" aria-label="account">
+                  <AccountCircle />
+                </IconButton>
+              </>
+              ) : (
+                <>
+                  <LoginModal loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+                </>
           )}
         </Toolbar>
       </AppBar>
