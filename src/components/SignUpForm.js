@@ -3,9 +3,8 @@ import RadioGroup from './RadioGroup'
 import React, { useState } from "react";
 import {useHistory} from 'react-router-dom'
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, TextField, Paper, Typography, Container, FormHelperText } from "@material-ui/core";
+import { Button, TextField, Paper, Container, FormHelperText } from "@material-ui/core";
 
-import {Redirect} from 'react-router-dom'
 
 export function SignUpForm({accType,setLoggedIn}) {
   const useStyles = makeStyles((theme) => ({
@@ -87,7 +86,7 @@ export function SignUpForm({accType,setLoggedIn}) {
         .then(res=>{
             console.log(res)
 
-            // log user in,set log in true, close modal
+            // log user in,set log in true, redirect to homepage
             localStorage.setItem('jwt',res.data.token)
             localStorage.setItem('id', res.data.student.id)
             localStorage.setItem('accType',"student")
@@ -117,6 +116,15 @@ export function SignUpForm({accType,setLoggedIn}) {
         })
         .then(res=>{
           console.log(res)
+
+          // log user in,set log in true, redirect to homepage
+          localStorage.setItem('jwt',res.data.token)
+          localStorage.setItem('id', res.data.student.id)
+          localStorage.setItem('accType',"tutor")
+
+          setLoggedIn(true)
+          
+          // Load homepage
           history.push("/home")
 
         })
