@@ -16,7 +16,6 @@ const Logout=({setLoggedIn})=>{
         localStorage.removeItem('accType')
 
         setLoggedIn(false)
-        
     }
 
     return(
