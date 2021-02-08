@@ -37,12 +37,12 @@ function App() {
         {!loggedIn ? <Redirect to="/" /> : <MyProfilePage />}
       </Route>
       <Route path="/tutor/:id" component={TutorProfilePage} />
-      <Route path="student/:id" component={StudentProfilePage} />
+      <Route path="/student/:id" component={StudentProfilePage} />
 
 
       {/* <CreateNewTutorSessionPage></CreateNewTutorSessionPage> */}
 
-      <ViewTutorSessionPage tutorSessionId="Pass in tutor session id here"></ViewTutorSessionPage>
+      {/* <ViewTutorSessionPage tutorSessionId="Pass in tutor session id here"></ViewTutorSessionPage> */}
 
       {/* <TutorProfilePage></TutorProfilePage> */}
 
