@@ -1,6 +1,7 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import {Container} from '@material-ui/core'
+import React,{useEffect} from "react";
+import { makeStyles,Typography,Container } from "@material-ui/core";
+import axios from "axios";
+import DisplayClassCards from '../components/DisplayClassCards'
 
 const Homepage = () => {
   const useStyles = makeStyles(() => ({
@@ -23,12 +24,22 @@ const Homepage = () => {
   }));
   const classes = useStyles();
 
+  useEffect(()=>{
+    axios({
+      method:'GET',
+      url:'https://aspire-api2021.herokuapp.com/api/v1/tutor_sessions'
+    })
+    .then(res=>{
+      console.log(res) // should be a list of classes
+    })
+    .catch(err=>console.error(err))
+  },[])
   
   return(
     <Container className={classes.firstContainer}>
-      <h1>
-        This is a homepage
-      </h1>
+      <Typography variant='h5'>Upcoming classes:</Typography>
+      <DisplayClassCards/>
+
     </Container>
   );
 };
