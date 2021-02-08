@@ -4,6 +4,7 @@ import {
   IconButton,
   Typography,
   makeStyles,
+  Button
 } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import logo from "../images/logo.png";
@@ -19,6 +20,8 @@ function Navbar({ loggedIn, setLoggedIn }) {
     }
   }))
   const classes = useStyles()
+
+  const accType = localStorage.getItem("accType")
 
   return (
     <>
@@ -51,9 +54,13 @@ function Navbar({ loggedIn, setLoggedIn }) {
 
           {loggedIn ? (
             <>
-              <Link to="/home" className={classes.link}>
+              <Link style={{marginRight:'20px'}} to="/home" className={classes.link}>
                 <Typography>Home</Typography>
               </Link>
+              {accType==="tutor"
+              ? <Button color='inherit'>Create a new class</Button>
+              : null
+              }
               <Logout setLoggedIn={setLoggedIn}/>
 
                 <IconButton color="inherit" aria-label="account">
