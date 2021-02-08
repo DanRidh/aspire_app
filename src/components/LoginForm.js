@@ -1,8 +1,11 @@
-import React, { useReducer } from "react";
+import React, { useState } from "react";
 import { Button, TextField, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
+import {useHistory} from 'react-router-dom'
 
-export function LoginForm(props) {
+export function LoginForm({accType,setLoggedIn}) {
+
   const useStyles = makeStyles(theme => ({
     button: {
       margin: theme.spacing(1)
@@ -29,70 +32,118 @@ export function LoginForm(props) {
       width: 400
     }
   }));
+  const classes = useStyles()
+  const history = useHistory()
 
-  const [formInput, setFormInput] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
-    {
-      name: "",
-      email: ""
+  // useStates
+  const [email,setEmail] = useState('')
+  const [password,setPassword]=useState('')
+
+  // input handlers
+  const handleEmail=e=>setEmail(e.target.value)
+  const handlePassword=e=>setPassword(e.target.value)
+
+  // form handler
+  const handleSubmit = e => {
+    e.preventDefault()
+    
+    if (accType==="student"){
+      // login to student account
+      console.log("in accType === student ")
+      console.log(email)
+      console.log(password)
+      axios({
+        method: 'POST',
+        url: 'https://aspire-api2021.herokuapp.com/api/v1/login/student',
+        data:{
+          email : email,
+          password : password,
+        }
+      })
+      .then(res=>{
+          console.log("success")
+          console.log(res)
+          console.log("success")
+
+          // log user in,set log in true, redirect to homepage
+          localStorage.setItem('jwt',res.data.token)
+          localStorage.setItem('id', res.data.id)
+          localStorage.setItem('accType',"student")
+
+          setLoggedIn(true)
+          
+          // Load homepage
+          history.push("/home")
+
+        })
+      .catch(err=>{
+        console.log("error")
+        console.error(err)
+        console.log("error")
+
+
+      })
     }
-  );
+    else{
+      //login to tutor account
+      axios({
+        method: 'POST',
+        url:'https://aspire-api2021.herokuapp.com/api/v1/login/tutor',
+        data:{
+          email : email,
+          password : password,
+        }
+      })
+      .then(res=>{
+        console.log(res)
 
-  const handleSubmit = evt => {
-    evt.preventDefault();
+        // log user in,set log in true, redirect to homepage
+        localStorage.setItem('jwt',res.data.token)
+        localStorage.setItem('id', res.data.id)
+        localStorage.setItem('accType',"tutor")
 
-    let data = { formInput };
+        setLoggedIn(true)
+        
+        // Load homepage
+        history.push("/home")
 
-    fetch("https://pointy-gauge.glitch.me/api/form", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => response.json())
-      .then(response => console.log("Success:", JSON.stringify(response)))
-      .catch(error => console.error("Error:", error));
+      })
+      .catch(err=>{console.log(err)})
+    }
+
   };
 
-  const handleInput = evt => {
-    const name = evt.target.name;
-    const newValue = evt.target.value;
-    setFormInput({ [name]: newValue });
-  };
 
-  const classes = useStyles();
 
-  console.log(props);
 
   return (
     <div>
       <Paper elevation={0}  className={classes.root}>
         <Typography variant="h5" component="h3">
-          {props.formName}
         </Typography>
-        <Typography component="p">{props.formDescription}</Typography>
 
         <form onSubmit={handleSubmit}>
           <TextField
             label="Email"
             id="margin-normal"
             name="email"
-            defaultValue={formInput.email}
+            defaultValue={email}
             className={classes.textField}
             helperText="e.g. name@gmail.com"
-            onChange={handleInput}
+            onChange={handleEmail}
           />
+
           <TextField
             label="Password"
             type="password"
             id="margin-normal"
             name="email"
-            defaultValue={formInput.password}
+            defaultValue={password}
             className={classes.textField}
             helperText="Enter password"
-            onChange={handleInput}
+            onChange={handlePassword}
           />
+
           <Button
             type="submit"
             variant="contained"
