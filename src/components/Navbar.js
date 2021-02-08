@@ -3,16 +3,22 @@ import {
   Toolbar,
   IconButton,
   Typography,
+  makeStyles,
 } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import logo from "../images/logo.png";
-import { useState } from "react";
 import LoginModal from "../containers/LoginModal";
+import {Link} from 'react-router-dom'
+import Logout from "../containers/Logout";
 
 function Navbar({ loggedIn, setLoggedIn }) {
-
-  const [isOpen, setIsOpen] = useState(false)
-  const toggle = () => setIsOpen(!isOpen);
+  const useStyles = makeStyles(()=>({
+    link:{
+      textDecoration:'none',
+      color:'inherit'
+    }
+  }))
+  const classes = useStyles()
 
   return (
     <>
@@ -26,26 +32,38 @@ function Navbar({ loggedIn, setLoggedIn }) {
         }}
       >
         <Toolbar>
-          <img
-            src={logo}
-            style={{
-              height: "50px",
-              width: "70px",
-              paddingTop: "10px",
-              paddingBottom: "10px",
-            }}
-          ></img>
+          <Link to="/">
+            <img
+              src={logo}
+              alt="aspire_logo"
+              className={classes.link}
+              style={{
+                height: "50px",
+                width: "70px",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+              }}
+            />
+          </Link>
 
           <Typography variant="h6" style={{ flexGrow: 1 }}></Typography>
 
+
           {loggedIn ? (
-            <IconButton color="inherit" aria-label="account">
-              <AccountCircle />
-            </IconButton>
-          ) : (
             <>
-              <LoginModal loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
-            </>
+              <Link to="/home" className={classes.link}>
+                <Typography>Home</Typography>
+              </Link>
+              <Logout setLoggedIn={setLoggedIn}/>
+
+                <IconButton color="inherit" aria-label="account">
+                  <AccountCircle />
+                </IconButton>
+              </>
+              ) : (
+                <>
+                  <LoginModal loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+                </>
           )}
         </Toolbar>
       </AppBar>
