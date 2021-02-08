@@ -6,17 +6,22 @@ import ClassCard from "../containers/ClassCard";
 const DisplayClassCards = ({ userId }) => {
   const [classes, updateClasses] = useState([]);
 
+  // NOTE: selective retrieval based on student and tutor id
+  // is optional feature, only to be implemented if we have extra time
+  
+  // TO DO: ADD LOADING INDICATOR
+  
+  // To retrieve all classes for homepage
   useEffect(() => {
-    // axios
-    //   .get("https://insta.nextacademy.com/api/v2/images", {
-    //     params: {
-    //       userId: userId,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     updateClasses(response.data);
-    //   });
-    updateClasses([1, 2, 3]);
+    axios({
+      method:'GET',
+      url:'https://aspire-api2021.herokuapp.com/api/v1/tutor_sessions'
+    })
+    .then(res=>{
+      // one list of classes
+      updateClasses(res.data)
+    })
+    .catch(err=>console.error(err))
   }, []);
 
   return (
@@ -25,7 +30,7 @@ const DisplayClassCards = ({ userId }) => {
         {classes.map((c) => {
           return (
             <div key={c.id}>
-              <ClassCard></ClassCard>
+              <ClassCard c={c}></ClassCard>
             </div>
           );
         })}
