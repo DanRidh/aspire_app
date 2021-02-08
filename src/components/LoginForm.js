@@ -49,9 +49,6 @@ export function LoginForm({accType,setLoggedIn}) {
     
     if (accType==="student"){
       // login to student account
-      console.log("in accType === student ")
-      console.log(email)
-      console.log(password)
       axios({
         method: 'POST',
         url: 'https://aspire-api2021.herokuapp.com/api/v1/login/student',
@@ -61,27 +58,15 @@ export function LoginForm({accType,setLoggedIn}) {
         }
       })
       .then(res=>{
-          console.log("success")
-          console.log(res)
-          console.log("success")
-
-          // log user in,set log in true, redirect to homepage
+          // log user in + redirect to homepage
           localStorage.setItem('jwt',res.data.token)
           localStorage.setItem('id', res.data.id)
           localStorage.setItem('accType',"student")
-
           setLoggedIn(true)
-          
-          // Load homepage
           history.push("/home")
-
         })
       .catch(err=>{
-        console.log("error")
         console.error(err)
-        console.log("error")
-
-
       })
     }
     else{
@@ -106,15 +91,10 @@ export function LoginForm({accType,setLoggedIn}) {
         
         // Load homepage
         history.push("/home")
-
       })
       .catch(err=>{console.log(err)})
     }
-
   };
-
-
-
 
   return (
     <div>
