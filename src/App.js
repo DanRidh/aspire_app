@@ -23,24 +23,24 @@ function App() {
 
   return (
     <>
-
       <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn}></Navbar>
-      
-      <Route exact path="/" component={LandingPage}/>
 
+      <Route exact path="/" component={LandingPage} />
 
       <Route exact path="/home">
         {!loggedIn ? <Redirect to="/" /> : <Homepage />}
       </Route>
-      
+
       <Route exact path="/profile">
         {!loggedIn ? <Redirect to="/" /> : <MyProfilePage />}
       </Route>
       <Route path="/tutor/:id" component={TutorProfilePage} />
       <Route path="/student/:id" component={StudentProfilePage} />
 
-
-      {/* <CreateNewTutorSessionPage></CreateNewTutorSessionPage> */}
+      <Route
+        path="/create-new-class"
+        component={CreateNewTutorSessionPage}
+      ></Route>
 
       {/* <ViewTutorSessionPage tutorSessionId="Pass in tutor session id here"></ViewTutorSessionPage> */}
 

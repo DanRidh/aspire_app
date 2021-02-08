@@ -68,8 +68,10 @@ const useStyles = makeStyles((theme) => ({
 
 const CreateNewTutorSessionPage = () => {
   const classes = useStyles();
-  let tutor_id = useParams().id;
-  const jwt = localStorage.getItem("jwt");
+  let tutor_id = localStorage.getItem("id");
+  // const jwt = localStorage.getItem("jwt");
+  const jwt =
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTI3ODgzNTIsIm5iZiI6MTYxMjc4ODM1MiwianRpIjoiMzJlMzBlYzUtYjI1Yi00MTdhLTkyYTItNTc5MGQ5YzEzM2RiIiwiZXhwIjoxNjEyNzg5MjUyLCJpZGVudGl0eSI6MywiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.AmRa8U6g0UF8o1ZQCrYeJ-j4hehjbyaM8oHgMK_rabo";
 
   const [submitDisabled, setSubmitDisabled] = useState(true);
   const [titleNull, setTitleNull] = useState(true);
@@ -87,7 +89,7 @@ const CreateNewTutorSessionPage = () => {
   const [username, updateUsername] = useState("");
   const [subject, setSubject] = useState("");
   const [maxStudentCapacity, setMaxStudentCapacity] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const subjects = [];
 
   const [formInput, setFormInput] = useReducer(
@@ -97,7 +99,7 @@ const CreateNewTutorSessionPage = () => {
       title: "",
       description: "",
       price: 100,
-      duration: 2,
+      // duration: 2,
       max_student_capacity: 5,
       start_year: "2021",
       start_month: "2",
@@ -189,7 +191,7 @@ const CreateNewTutorSessionPage = () => {
   const handlePriceChange = (evt) => {
     const price = evt.target.value;
     setPrice(price);
-    setFormInput({ price: price });
+    setFormInput({ price: Number(price) });
   };
 
   const handleDateChange = (evt) => {
@@ -210,7 +212,7 @@ const CreateNewTutorSessionPage = () => {
   };
 
   const handleStartTime = (evt) => {
-    // console.log(evt.target.value);
+    console.log(evt);
     const hour = evt.target.value.substring(0, 2);
     const minute = evt.target.value.substring(3, 5);
     setStartTimeNull(false);
@@ -233,14 +235,48 @@ const CreateNewTutorSessionPage = () => {
     });
   };
 
+  const calculateDuration = () => {
+    let start_minute = parseInt(formInput["start_minute"]);
+    let start_hour = parseInt(formInput["start_hour"]);
+    let end_minute = parseInt(formInput["end_minute"]);
+    let end_hour = parseInt(formInput["end_hour"]);
+
+    if (start_minute > end_minute) {
+      end_hour = end_hour - 1;
+      end_minute = end_minute + 60;
+    }
+    let duration_minute = end_minute - start_minute;
+    let duration_hour = end_hour - start_hour;
+    const duration = `${duration_hour} hour(s) ${duration_minute} minute(s)`;
+    return duration;
+  };
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    let data = { formInput };
+    console.log(calculateDuration());
 
-    console.log(JSON.stringify(data));
+    let data = formInput;
+
+    // console.log(JSON.stringify(data));
+    // console.log(data);
 
     // DO AXIOS POST REQUEST TO SUBMIT FORM WITH ALL DETAILS AND ZOOM API
+
+    axios({
+      method: "POST",
+      url: "https://aspire-api2021.herokuapp.com/api/v1/tutor_sessions/new",
+      data: data,
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
