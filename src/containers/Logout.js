@@ -21,8 +21,7 @@ const Logout=({setLoggedIn})=>{
     return(
         <Button 
         onClick={handleClick} 
-        variant="contained" 
-        color="secondary" 
+        color="inherit" 
         className= {classes.button}
         >
             Logout

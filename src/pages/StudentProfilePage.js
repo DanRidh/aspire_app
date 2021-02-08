@@ -64,7 +64,6 @@ const StudentProfilePage =()=>{
             updateRating(parseFloat(res.data.rating).toFixed(1)) 
             updateUsername(res.data.username)
     
-    
         })
         .catch(err=>{console.error(err)})
 
@@ -81,6 +80,7 @@ const StudentProfilePage =()=>{
             <Box className={classes.profile}>
                 <Avatar className={classes.avatar} alt={`${firstName} ${lastName}`} src={profilePhoto} />
                 <Typography variant='h4'>{firstName} {lastName}</Typography>
+                <Typography >Student</Typography>
                 <Typography component="legend">{rating}/5.0</Typography>
                 <Rating name="read-only" value={rating} readOnly />
                 <Typography>Age : {age} </Typography>
