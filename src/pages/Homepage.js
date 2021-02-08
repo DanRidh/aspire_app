@@ -11,6 +11,10 @@ const Homepage = () => {
       textAlign: "center",
     },
     firstContainer:{
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      textAlign: "center",
       marginTop:"100px"
     },
     marginAutoItem: {
@@ -21,7 +25,7 @@ const Homepage = () => {
 
   
   return(
-    <Container className={classes.marginAutoContainer, classes.firstContainer}>
+    <Container className={classes.firstContainer}>
       <h1>
         This is a homepage
       </h1>
