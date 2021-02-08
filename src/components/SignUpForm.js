@@ -3,9 +3,8 @@ import RadioGroup from './RadioGroup'
 import React, { useState } from "react";
 import {useHistory} from 'react-router-dom'
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, TextField, Paper, Typography, Container, FormHelperText } from "@material-ui/core";
+import { Button, TextField, Paper, Container, FormHelperText } from "@material-ui/core";
 
-import {Redirect} from 'react-router-dom'
 
 export function SignUpForm({accType,setLoggedIn}) {
   const useStyles = makeStyles((theme) => ({

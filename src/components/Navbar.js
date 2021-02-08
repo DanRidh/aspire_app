@@ -7,7 +7,6 @@ import {
 } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import logo from "../images/logo.png";
-import { useState } from "react";
 import LoginModal from "../containers/LoginModal";
 import {Link} from 'react-router-dom'
 import Logout from "../containers/Logout";
@@ -36,6 +35,7 @@ function Navbar({ loggedIn, setLoggedIn }) {
           <Link to="/">
             <img
               src={logo}
+              alt="aspire_logo"
               className={classes.link}
               style={{
                 height: "50px",
