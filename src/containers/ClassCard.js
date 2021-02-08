@@ -56,8 +56,8 @@ export default function ClassCard({c}) {
   console.log(startTime)
 
   const end = new Date (c.end_time)
-  const endDate = end.toLocaleDateString()
-  const endTime = end.toLocaleTimeString()
+  const endDate = end.toLocaleDateString('en-MY',{timeZone:'Asia/Singapore'})
+  const endTime = end.toLocaleTimeString('en-MY',{timeZone:'Asia/Singapore'})
   console.log(startTime)
 
   return (
