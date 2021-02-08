@@ -14,7 +14,7 @@ const StripeButton = () => {
         name="Test Lesson"
         description="lesson description"
         amount={5000} //cents
-        currency="RM"
+        currency="MYR"
         allowRememberMe
         stripeKey="pk_test_51IIPpEDb9urO8ySSNFVPAxyXayE8NPrjmkrBckdIrw51XYDdh8qFas3GDuZ4wS7rHm54LK77wRihFtZxluveAZyS00Ddoaf1Gv"
       />

@@ -8,7 +8,7 @@ class PaymentRequestForm extends React.Component {
 
       const paymentRequest = props.stripe.paymentRequest({
         country: 'MY',
-        currency: 'rm',
+        currency: 'MYR',
         total: {
           label: 'test lesson',
           amount: 5000,
