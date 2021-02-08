@@ -120,7 +120,7 @@ export function SignUpForm({accType,setLoggedIn}) {
           // log user in,set log in true, redirect to homepage
           localStorage.setItem('jwt',res.data.token)
           localStorage.setItem('id', res.data.student.id)
-          localStorage.setItem('accType',"student")
+          localStorage.setItem('accType',"tutor")
 
           setLoggedIn(true)
           

@@ -128,7 +128,7 @@ let LoginModal=({ loggedIn ,setLoggedIn})=>{
             >
                 <Paper className={classes.paper}>
                     <Typography variant="h6">Sign in to your {accType} account</Typography>
-                    <LoginForm/>
+                    <LoginForm accType={accType} setLoggedIn={setLoggedIn}/>
                 </Paper>
             </Modal>
         </>
