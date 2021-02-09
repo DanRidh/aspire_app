@@ -69,20 +69,25 @@ export default function ClassCard({c}) {
   price = parseFloat(price)
 
   const handleUnenroll=()=>{
-    console.log(c)
-    console.log(c.id)
+    // console.log(c)
+    // console.log(c.id)
 
     axios({
       method:'POST',
       url:'https://aspire-api2021.herokuapp.com/api/v1/student_tutor_sessions/unenroll',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`
+      },
       date:{
         tutor_session_id: c.id
       }
     })
     .then(res=>{
       console.log(res)
+      alert(`Successfully unenrolled from ${c.title}`)
     })
     .catch(err=>console.error(err))
+    
   }
 
   console.log(c)
