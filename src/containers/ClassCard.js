@@ -18,6 +18,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import image from "../images/card-image.jpg";
 import { Avatar, Button,Divider } from "@material-ui/core";
 import StripeButton from "../components/StripeButton";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,9 +66,24 @@ export default function ClassCard({c}) {
   const endTime = end.substring(17,22)
 
   let price = c.price
-  console.log(price)
   price = parseFloat(price)
-  console.log(price)
+
+  const handleUnenroll=()=>{
+    console.log(c)
+    console.log(c.id)
+
+    axios({
+      method:'POST',
+      url:'https://aspire-api2021.herokuapp.com/api/v1/student_tutor_sessions/unenroll',
+      date:{
+        tutor_session_id: c.id
+      }
+    })
+    .then(res=>{
+      console.log(res)
+    })
+    .catch(err=>console.error(err))
+  }
 
   return (
     <Card className={classes.root}>
@@ -109,7 +125,7 @@ export default function ClassCard({c}) {
       </CardContent>
       <CardActions>
         <StripeButton>Pay</StripeButton>
-        <Button>Unenroll</Button>
+        <Button onClick={handleUnenroll}>Unenroll</Button>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
