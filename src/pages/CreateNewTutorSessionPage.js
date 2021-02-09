@@ -69,9 +69,8 @@ const useStyles = makeStyles((theme) => ({
 const CreateNewTutorSessionPage = () => {
   const classes = useStyles();
   let tutor_id = localStorage.getItem("id");
-  // const jwt = localStorage.getItem("jwt");
-  const jwt =
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTI3ODgzNTIsIm5iZiI6MTYxMjc4ODM1MiwianRpIjoiMzJlMzBlYzUtYjI1Yi00MTdhLTkyYTItNTc5MGQ5YzEzM2RiIiwiZXhwIjoxNjEyNzg5MjUyLCJpZGVudGl0eSI6MywiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.AmRa8U6g0UF8o1ZQCrYeJ-j4hehjbyaM8oHgMK_rabo";
+  const jwt = localStorage.getItem("jwt");
+  
 
   const [submitDisabled, setSubmitDisabled] = useState(true);
   const [titleNull, setTitleNull] = useState(true);
