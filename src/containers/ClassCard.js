@@ -85,6 +85,8 @@ export default function ClassCard({c}) {
     .catch(err=>console.error(err))
   }
 
+  console.log(c)
+
   return (
     <Card className={classes.root}>
 
@@ -124,7 +126,7 @@ export default function ClassCard({c}) {
         <Divider className={classes.cardItemMargin}/>
       </CardContent>
       <CardActions>
-        <StripeButton>Pay</StripeButton>
+        <StripeButton c={c}>Pay</StripeButton>
         <Button onClick={handleUnenroll}>Unenroll</Button>
         <IconButton aria-label="share">
           <ShareIcon />
