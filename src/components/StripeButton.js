@@ -5,6 +5,8 @@ import axios from "axios";
 
 const StripeButton = ({c}) => {
 
+  let stsID = null
+
   const onToken = (token) => {
     console.log(token);
     console.log("payment success")
@@ -23,31 +25,32 @@ const StripeButton = ({c}) => {
     .then(res=>{
       console.log('student_tutor_session instance created')
       console.log(res)
+      
+      stsID = res.data.student_tutor_session_id
 
-      // write code here to get student_tutor_session id
-      // pending update to api for the id
+      // create instance in payment table
+      console.log('stsID : ',stsID) // returns correct value
+      console.log(localStorage.getItem("jwt")) // returns correct value
 
-      // const stsID = res.data.id
+      axios({
+        method: 'POST',
+        url: 'https://aspire-api2021.herokuapp.com/api/v1/payments/new',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`
+        },
+        data:{
+          student_tutor_session: `${stsID}`
+        } 
+      })
+      .then((res) => {
+        console.log('payment instance created')
+        console.log(res);
+      })
+      .catch(err=>console.error(err))
+
     })
     .catch(err=>console.error(err))
 
-    // create instance in payment table
-    axios({
-      method: 'POST',
-      url: 'https://aspire-api2021.herokuapp.com/api/v1/payments/new',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`
-      },
-      data: {
-        // student_tutor_session: `${stsID}`
-      } 
-    })
-    .then((res) => {
-      console.log('payment instance created')
-      console.log(res);
-    }, (err) => {
-      console.log(err);
-    }); 
   };
 
 
