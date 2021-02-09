@@ -52,8 +52,6 @@ export default function ClassCard({c}) {
   // const classes = useStyles({ profilePhoto, username });
   const classes = useStyles();
 
-  // TO FIX: Timezone in UTC+00:00
-  // to change to GMT+08:00
   let start = c.start_time.toString()
   let end = c.end_time.toString()
 
@@ -64,8 +62,6 @@ export default function ClassCard({c}) {
   const endDay = end.substring(0,3)
   const endDate = end.substring(5,16)
   const endTime = end.substring(17,22)
-
-  // console.log(c)
 
   let price = c.price
   console.log(price)
@@ -109,8 +105,6 @@ export default function ClassCard({c}) {
         <Divider className={classes.cardItemMargin}/>
         <Typography variant="h6" className={classes.cardItemMargin}>Price: RM {price}</Typography>
         <Divider className={classes.cardItemMargin}/>
-        
-        
       </CardContent>
       <CardActions>
         <Button>Enroll</Button>
