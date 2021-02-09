@@ -16,7 +16,7 @@ import ShareIcon from "@material-ui/icons/Share";
 // import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import image from "../images/card-image.jpg";
-import { Avatar, Button } from "@material-ui/core";
+import { Avatar, Button,Divider } from "@material-ui/core";
 import StripeButton from "../components/StripeButton";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,23 +43,31 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: red[500],
   },
+  cardItemMargin:{
+    marginBottom:10,
+    marginTop:10
+  }
 }));
 
 export default function ClassCard({c}) {
   // const classes = useStyles({ profilePhoto, username });
   const classes = useStyles();
 
-  // TO FIX: Timezone in UTC+00:00
-  // to change to GMT+08:00
-  const start = new Date(c.start_time)
-  const startDate= start.toLocaleDateString('en-MY',{timeZone:'Asia/Singapore'})
-  const startTime = start.toLocaleTimeString('en-MY',{timeZone:'Asia/Singapore'})
-  console.log(startTime)
+  let start = c.start_time.toString()
+  let end = c.end_time.toString()
 
-  const end = new Date (c.end_time)
-  const endDate = end.toLocaleDateString('en-MY',{timeZone:'Asia/Singapore'})
-  const endTime = end.toLocaleTimeString('en-MY',{timeZone:'Asia/Singapore'})
-  console.log(startTime)
+  const startDay = start.substring(0,3)
+  const startDate = start.substring(5,16)
+  const startTime = start.substring(17,22)
+
+  const endDay = end.substring(0,3)
+  const endDate = end.substring(5,16)
+  const endTime = end.substring(17,22)
+
+  let price = c.price
+  console.log(price)
+  price = parseFloat(price)
+  console.log(price)
 
   return (
     <Card className={classes.root}>
@@ -78,14 +86,26 @@ export default function ClassCard({c}) {
           style={{ marginTop: "20px" }}
         />
       <CardContent>
-        <Typography>Category: {c.subject.category}</Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography className={classes.cardItemMargin}>Category: {c.subject.category}</Typography>
+        <Typography className={classes.cardItemMargin} variant="body2" color="textSecondary" component="p">
           {c.description}
         </Typography>
-        <Typography>Start: {startDate} {startTime}</Typography>
-        <Typography>End: {endDate} {endTime}</Typography>
-        
-        
+        <Divider className={classes.cardItemMargin}/>
+        {(startDate===endDate)
+          ? 
+          <>
+            <Typography>{startDay}, {startDate} </Typography>
+            <Typography>{startTime} - {endTime}</Typography>
+          </>
+          : 
+          <>
+            <Typography>{startDay}, {startDate}, {startTime} - </Typography>
+            <Typography>{endDay},{endDate}, {endTime}</Typography>
+          </>
+        }
+        <Divider className={classes.cardItemMargin}/>
+        <Typography variant="h6" className={classes.cardItemMargin}>Price: RM {price}</Typography>
+        <Divider className={classes.cardItemMargin}/>
       </CardContent>
       <CardActions>
         <StripeButton>Pay</StripeButton>
