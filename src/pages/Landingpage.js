@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import howItWorks from "../images/how-it-works.svg";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   marginAutoContainer: {
@@ -15,8 +16,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+
 const LandingPage = () => {
   const classes = useStyles();
+  const [popUpTextState, setPopUpTextState] = useState(false)
+
   return (
     <>
       {/* START JUMBOTRON */}
@@ -53,8 +57,7 @@ const LandingPage = () => {
             Teaching and learning made easier for you.
           </h5>
           <Button
-            onClick={() => {
-              alert("clicked");
+            onClick={() => {setPopUpTextState(!popUpTextState)
             }}
             variant="contained"
             style={{
@@ -68,6 +71,13 @@ const LandingPage = () => {
           >
             START FREE
           </Button>
+            {popUpTextState
+            ? <Typography variant='caption'style={{display:'block', marginTop:'10px'}}>
+              Welcome aboard! Click the register/sign up button at the top to get started.
+              </Typography>
+            : null
+            }
+
         </div>
       </div>
       {/* END JUMBOTRON */}
