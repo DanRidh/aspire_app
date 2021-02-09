@@ -79,7 +79,7 @@ export default function ClassCard({c}) {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`
       },
       date:{
-        tutor_session_id: c.id
+        tutor_session_id: `${c.id}`
       }
     })
     .then(res=>{
@@ -87,7 +87,7 @@ export default function ClassCard({c}) {
       alert(`Successfully unenrolled from ${c.title}`)
     })
     .catch(err=>console.error(err))
-    
+
   }
 
   console.log(c)
