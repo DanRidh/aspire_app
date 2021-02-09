@@ -69,6 +69,8 @@ export default function ClassCard({c}) {
   price = parseFloat(price)
   console.log(price)
 
+  console.log(c)
+
   return (
     <Card className={classes.root}>
 
@@ -108,7 +110,7 @@ export default function ClassCard({c}) {
         <Divider className={classes.cardItemMargin}/>
       </CardContent>
       <CardActions>
-        <StripeButton>Pay</StripeButton>
+        <StripeButton c={c}>Pay</StripeButton>
         <Button>Unenroll</Button>
         <IconButton aria-label="share">
           <ShareIcon />
