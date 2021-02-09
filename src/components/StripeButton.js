@@ -5,12 +5,12 @@ const StripeButton = () => {
 
   const onToken = (token) => {
     console.log(token);
-  }
+  };
 
   return (
     <>
       <StripeCheckout
-        token={this.onToken}
+        token={onToken}
         name="Test Lesson"
         description="lesson description"
         amount={5000} //cents

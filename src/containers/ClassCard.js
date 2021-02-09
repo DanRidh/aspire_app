@@ -17,6 +17,7 @@ import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import image from "../images/card-image.jpg";
 import { Avatar, Button } from "@material-ui/core";
+import StripeButton from "../components/StripeButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,12 +88,10 @@ export default function ClassCard({c}) {
         
       </CardContent>
       <CardActions>
-        <Button>Enroll</Button>
+        <StripeButton>Pay</StripeButton>
+        <Button>Unenroll</Button>
         <IconButton aria-label="share">
           <ShareIcon />
-        </IconButton>
-        <IconButton aria-label="settings">
-          <MoreVertIcon />
         </IconButton>
       </CardActions>
     </Card>
