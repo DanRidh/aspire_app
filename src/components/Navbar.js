@@ -9,7 +9,7 @@ import {
 import { AccountCircle } from "@material-ui/icons";
 import logo from "../images/logo.png";
 import LoginModal from "../containers/LoginModal";
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import Logout from "../containers/Logout";
 
 function Navbar({ loggedIn, setLoggedIn }) {
@@ -20,8 +20,13 @@ function Navbar({ loggedIn, setLoggedIn }) {
     }
   }))
   const classes = useStyles()
+  const history = useHistory()
 
   const accType = localStorage.getItem("accType")
+
+  const handleClick=()=>{
+    history.push('/create-new-class')
+  }
 
   return (
     <>
@@ -58,7 +63,7 @@ function Navbar({ loggedIn, setLoggedIn }) {
                 <Typography>Home</Typography>
               </Link>
               {accType==="tutor"
-              ? <Button color='inherit'>Create a new class</Button>
+              ? <Button color='inherit' onClick={handleClick}>Create a new class</Button>
               : null
               }
               <Logout setLoggedIn={setLoggedIn}/>
