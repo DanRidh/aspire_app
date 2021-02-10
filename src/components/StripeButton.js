@@ -67,31 +67,6 @@ const StripeButton = ({c,setEnrollStatus, setPaymentStatus }) => {
           console.error(err)
           setPaymentStatus(false)
         })
-<<<<<<< HEAD
-          .then((res) => {
-            console.log("payment instance created");
-            console.log(res);
-
-            // update payment status in student_tutor_session
-            axios({
-              method: "POST",
-              url: "https://aspire-api2021.herokuapp.com/api/v1/student_tutor_sessions/update-payment",
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-              },
-              data: {
-                student_tutor_session_id: `${stsID}`,
-              },
-            })
-              .then((res) => {
-                console.log("payment status updated");
-                console.log(res);
-              })
-              .catch((err) => console.error(err));
-          })
-          .catch((err) => console.error(err));
-=======
->>>>>>> ddea4ba16abaec43b03c28dad7cc7413144e0d43
       })
       .catch(err=>{
         console.error(err)
