@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React from "react";
 import axios from "axios";
 import { Button } from '@material-ui/core';
 import StripeCheckout from 'react-stripe-checkout';
@@ -9,7 +10,7 @@ const StripeButton = ({c,setEnrollStatus, setPaymentStatus }) => {
 
   const onToken = (token) => {
     console.log(token);
-    console.log("payment success")
+    console.log("payment success");
 
     // create instance in student_tutor_session
     axios({
@@ -74,7 +75,7 @@ const StripeButton = ({c,setEnrollStatus, setPaymentStatus }) => {
     })
     .catch(err=>console.error(err))
   };
-
+  
   return (
     <>
       <StripeCheckout
@@ -86,10 +87,12 @@ const StripeButton = ({c,setEnrollStatus, setPaymentStatus }) => {
         allowRememberMe
         stripeKey="pk_test_51IIPpEDb9urO8ySSNFVPAxyXayE8NPrjmkrBckdIrw51XYDdh8qFas3GDuZ4wS7rHm54LK77wRihFtZxluveAZyS00Ddoaf1Gv"
       >
-        <Button variant="contained" color="secondary">Make Payment</Button>
+        <Button variant="contained" color="secondary">
+          Enroll
+        </Button>
       </StripeCheckout>
     </>
   );
 };
 
-export default StripeButton
+export default StripeButton;
