@@ -98,7 +98,7 @@ const Homepage = () => {
       <Container className={classes.firstContainer}>
         <Typography variant='h5'>Upcoming classes:</Typography>
         <LoadingIndicator loadStatus={loadStatus} width='100' height='100' color='teal'/>
-        <DisplayClassCards setEnrollStatus={setEnrollStatus} setPaymentStatus={setPaymentStatus} />
+        <DisplayClassCards setEnrollStatus={setEnrollStatus} setPaymentStatus={setPaymentStatus} paymentStatus={paymentStatus}/>
       </Container>
     </>
   );

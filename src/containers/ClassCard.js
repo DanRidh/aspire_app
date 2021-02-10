@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 // import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -16,7 +16,7 @@ import ShareIcon from "@material-ui/icons/Share";
 // import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 // import MoreVertIcon from "@material-ui/icons/MoreVert";
 import image from "../images/card-image.jpg";
-import { Avatar, Button, Divider } from "@material-ui/core";
+import { Avatar, Button, Divider, Link } from "@material-ui/core";
 import StripeButton from "../components/StripeButton";
 import axios from "axios";
 
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ClassCard({c ,setEnrollStatus, setPaymentStatus}) {
+export default function ClassCard({c ,setEnrollStatus, setPaymentStatus, paymentStatus}) {
   // const classes = useStyles({ profilePhoto, username });
   const classes = useStyles();
 
@@ -85,11 +85,41 @@ export default function ClassCard({c ,setEnrollStatus, setPaymentStatus}) {
       .then((res) => {
         console.log(res);
         alert(`Successfully unenrolled from ${c.title}`);
+        setPaymentStatus(false);
       })
       .catch((err) => console.error(err));
   };
 
   console.log(c);
+
+  const [sessionPaid, setSessionPaid] = useState("");
+  const [sessionPaidID, setSessionPaidID] = useState(0);
+
+  axios({
+    method: 'GET',
+    url: "https://aspire-api2021.herokuapp.com/api/v1/student_tutor_sessions/me",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
+    },
+  })
+  .then(res=>{
+    console.log('my tutor sessions');
+    console.log(res.data[0].status);
+    console.log(res.data[0].tutor_session.id)
+    setSessionPaid(res.data[0].status);
+    setSessionPaidID(res.data[0].tutor_session.id);
+  })
+  .catch(err=>{
+    console.log(err)
+    setSessionPaid("");
+    setSessionPaidID(-1);
+  })
+
+  let paidcheck = (sessionPaid === "paid" && sessionPaidID === c.id);
+  
+  const openZoom = () => {
+    window.location.href = c.zoom_participant;
+  };
 
   return (
     <Card className={classes.root}>
@@ -141,9 +171,18 @@ export default function ClassCard({c ,setEnrollStatus, setPaymentStatus}) {
           Price: RM {price}
         </Typography>
         <Divider className={classes.cardItemMargin} />
+        <Typography className={classes.cardItemMargin}>
+          {paidcheck ? (
+            <a style={{display: "table-cell"}} href={c.zoom_participant} target="_blank">Your zoom join link</a>
+          ) : (
+            <div></div>
+          )}
+        </Typography>
+        
+        
       </CardContent>
       <CardActions>
-        <StripeButton c={c} setEnrollStatus={setEnrollStatus} setPaymentStatus={setPaymentStatus} >Pay</StripeButton>
+        <StripeButton c={c} setEnrollStatus={setEnrollStatus} setPaymentStatus={setPaymentStatus} paymentStatus={paymentStatus}>Pay</StripeButton>
         <Button onClick={handleUnenroll}>Unenroll</Button>
         <IconButton aria-label="share">
           <ShareIcon />
