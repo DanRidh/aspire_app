@@ -7,6 +7,7 @@ const Footer = () => {
     <>
       <div className="footer">
         <img
+          alt={logo}
           src={logo}
           style={{
             height: "50px",
@@ -23,17 +24,17 @@ const Footer = () => {
         <div className="footer-links">
           <ul>
             <li>
-              <a className="" href="#" target="_blank">
+              <a className="" href="/">
                 Privacy Notice
               </a>
             </li>
             <li>
-              <a className="" href="#" target="_blank">
+              <a className="" href="/">
                 Terms of Service
               </a>
             </li>
             <li>
-              <a className="" href="javascript:void(0);" target="">
+              <a className="" href="/">
                 Cookie Preferences
               </a>
             </li>

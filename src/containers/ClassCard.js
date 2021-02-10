@@ -14,18 +14,17 @@ import { red } from "@material-ui/core/colors";
 // import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 // import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+// import MoreVertIcon from "@material-ui/icons/MoreVert";
 import image from "../images/card-image.jpg";
-import { Avatar, Button,Divider } from "@material-ui/core";
+import { Avatar, Button, Divider } from "@material-ui/core";
 import StripeButton from "../components/StripeButton";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 345,
-    minHeight:450,
-    margin:10
-    
+    minHeight: 450,
+    margin: 10,
   },
   media: {
     height: 0,
@@ -44,91 +43,104 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: red[500],
   },
-  cardItemMargin:{
-    marginBottom:10,
-    marginTop:10
-  }
+  cardItemMargin: {
+    marginBottom: 10,
+    marginTop: 10,
+  },
 }));
 
-export default function ClassCard({c}) {
+export default function ClassCard({ c }) {
   // const classes = useStyles({ profilePhoto, username });
   const classes = useStyles();
 
-  let start = c.start_time.toString()
-  let end = c.end_time.toString()
+  let start = c.start_time.toString();
+  let end = c.end_time.toString();
 
-  const startDay = start.substring(0,3)
-  const startDate = start.substring(5,16)
-  const startTime = start.substring(17,22)
+  const startDay = start.substring(0, 3);
+  const startDate = start.substring(5, 16);
+  const startTime = start.substring(17, 22);
 
-  const endDay = end.substring(0,3)
-  const endDate = end.substring(5,16)
-  const endTime = end.substring(17,22)
+  const endDay = end.substring(0, 3);
+  const endDate = end.substring(5, 16);
+  const endTime = end.substring(17, 22);
 
-  let price = c.price
-  price = parseFloat(price)
+  let price = c.price;
+  price = parseFloat(price);
 
-  const handleUnenroll=()=>{
+  const handleUnenroll = () => {
     // console.log(c)
-    // console.log(c.id)
+    console.log(c.id);
 
     axios({
-      method:'POST',
-      url:'https://aspire-api2021.herokuapp.com/api/v1/student_tutor_sessions/unenroll',
+      method: "POST",
+      url:
+        "https://aspire-api2021.herokuapp.com/api/v1/student_tutor_sessions/unenroll",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
-      date:{
-        tutor_session_id: `${c.id}`
-      }
+      data: {
+        tutor_session_id: `${c.id}`,
+      },
     })
-    .then(res=>{
-      console.log(res)
-      alert(`Successfully unenrolled from ${c.title}`)
-    })
-    .catch(err=>console.error(err))
+      .then((res) => {
+        console.log(res);
+        alert(`Successfully unenrolled from ${c.title}`);
+      })
+      .catch((err) => console.error(err));
+  };
 
-  }
-
-  console.log(c)
+  console.log(c);
 
   return (
     <Card className={classes.root}>
-
       <CardHeader
-        avatar = {
-          <Avatar src={c.tutor.profile_image}></Avatar>
-        }
+        avatar={<Avatar src={c.tutor.profile_image}></Avatar>}
         title={`${c.title}`}
         subheader={`by ${c.tutor.first_name} ${c.tutor.last_name}`}
       />
-        <CardMedia
-          className={classes.media}
-          image={image}
-          title= {c.title}
-          style={{ marginTop: "20px" }}
-        />
+      <CardMedia
+        className={classes.media}
+        image={image}
+        title={c.title}
+        style={{ marginTop: "20px" }}
+      />
       <CardContent>
-        <Typography className={classes.cardItemMargin}>Category: {c.subject.category}</Typography>
-        <Typography className={classes.cardItemMargin} variant="body2" color="textSecondary" component="p">
+        <Typography className={classes.cardItemMargin}>
+          Category: {c.subject.category}
+        </Typography>
+        <Typography
+          className={classes.cardItemMargin}
+          variant="body2"
+          color="textSecondary"
+          component="p"
+        >
           {c.description}
         </Typography>
-        <Divider className={classes.cardItemMargin}/>
-        {(startDate===endDate)
-          ? 
+        <Divider className={classes.cardItemMargin} />
+        {startDate === endDate ? (
           <>
-            <Typography>{startDay}, {startDate} </Typography>
-            <Typography>{startTime} - {endTime}</Typography>
+            <Typography>
+              {startDay}, {startDate}{" "}
+            </Typography>
+            <Typography>
+              {startTime} - {endTime}
+            </Typography>
           </>
-          : 
+        ) : (
           <>
-            <Typography>{startDay}, {startDate}, {startTime} - </Typography>
-            <Typography>{endDay},{endDate}, {endTime}</Typography>
+            <Typography>
+              {startDay}, {startDate}, {startTime} -{" "}
+            </Typography>
+            <Typography>
+              {endDay},{endDate}, {endTime}
+            </Typography>
           </>
-        }
-        <Divider className={classes.cardItemMargin}/>
-        <Typography variant="h6" className={classes.cardItemMargin}>Price: RM {price}</Typography>
-        <Divider className={classes.cardItemMargin}/>
+        )}
+        <Divider className={classes.cardItemMargin} />
+        <Typography variant="h6" className={classes.cardItemMargin}>
+          Price: RM {price}
+        </Typography>
+        <Divider className={classes.cardItemMargin} />
       </CardContent>
       <CardActions>
         <StripeButton c={c}>Pay</StripeButton>

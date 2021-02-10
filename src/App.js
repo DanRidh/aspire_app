@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Redirect, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
-import Tutors from "./components/Tutors";
 import Footer from "./components/Footer";
 
 import Homepage from "./pages/Homepage";
@@ -11,8 +10,7 @@ import LandingPage from "./pages/Landingpage";
 import MyProfilePage from "./pages/MyProfilePage";
 import TutorProfilePage from "./pages/TutorProfilePage";
 import StudentProfilePage from "./pages/StudentProfilePage";
-import TutorSessionsPage from "./pages/ViewTutorSessionPage";
-import ViewTutorSessionPage from "./pages/ViewTutorSessionPage";
+
 import CreateNewTutorSessionPage from "./pages/CreateNewTutorSessionPage";
 
 function App() {

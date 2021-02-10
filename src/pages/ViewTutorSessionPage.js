@@ -13,8 +13,6 @@ import EventIcon from "@material-ui/icons/Event";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Button } from "@material-ui/core";
 import image from "../images/8600.jpg";
-import ClassCard from "../containers/ClassCard";
-import DisplayClassCards from "../components/DisplayClassCards";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -65,11 +63,12 @@ const ViewTutorSessionPage = ({ id }) => {
     setAge("36");
     setRating(4.5);
     setPrice("80");
+    console.log(price);
     const image_path = "tutor/mrslockheart1/profile-pic/amongus.jpg";
     setProfilePhoto(
       `https://aspire-app2021.s3-ap-southeast-1.amazonaws.com/${image_path}`
     );
-  }, []);
+  }, [tutorSessionId]);
 
   return (
     <>
@@ -119,6 +118,7 @@ const ViewTutorSessionPage = ({ id }) => {
                 <Box>Gender : {isFemale ? "Female" : "Male"}</Box>
               </div>
               <img
+                alt={image}
                 src={image}
                 style={{ height: "50vh", width: "80%", objectFit: "contain" }}
               ></img>
@@ -225,7 +225,6 @@ const ViewTutorSessionPage = ({ id }) => {
             </Paper>
           </Grid>
         </Grid>
-        <DisplayClassCards></DisplayClassCards>
       </div>
     </>
   );
