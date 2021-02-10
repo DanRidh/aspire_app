@@ -21,7 +21,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { ContactlessOutlined } from "@material-ui/icons";
+// import { ContactlessOutlined } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -263,49 +263,49 @@ const CreateNewTutorSessionPage = () => {
     });
   };
 
-  const handleZoomLink = () => {
-    console.log("generating zoom link");
+  // const handleZoomLink = () => {
+  //   console.log("generating zoom link");
 
-    axios({
-      method: "POST",
-      url: "https://api.zoom.us/v2/users/danialridh1@gmail.com/meetings",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-      },
-      data: {
-        topic: `${formInput.title}`,
-        type: 2,
-        start_time: `${formInput.start_hour}`,
-        duration: `${duration}`,
-        timezone: "MY"
-      },
-    })
-      .then((res) => {
-        console.log("zoom link generated");
-        console.log(res);
+  //   axios({
+  //     method: "POST",
+  //     url: "https://api.zoom.us/v2/users/danialridh1@gmail.com/meetings",
+  //     headers: {
+  //       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+  //     },
+  //     data: {
+  //       topic: `${formInput.title}`,
+  //       type: 2,
+  //       start_time: `${formInput.start_hour}`,
+  //       duration: `${duration}`,
+  //       timezone: "MY"
+  //     },
+  //   })
+  //     .then((res) => {
+  //       console.log("zoom link generated");
+  //       console.log(res);
 
-      axios({
-        method: "GET",
-        url:"https://api.zoom.us/v2/users/danialridh1@gmail.com/meetings?page_size=30&type=scheduled",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      })
-        .then((res) => {
-          console.log("getting meeting list")
-          console.log(res)
-          zoomlink = res.data.meetings.join_url;
-          zoomhost = res.data.meetings.host_id;
-        })
-        .catch((err) => console.log(err));
-    })
-    .catch((err) => console.log(err));
+  //     axios({
+  //       method: "GET",
+  //       url:"https://api.zoom.us/v2/users/danialridh1@gmail.com/meetings?page_size=30&type=scheduled",
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+  //       },
+  //     })
+  //       .then((res) => {
+  //         console.log("getting meeting list")
+  //         console.log(res)
+  //         zoomlink = res.data.meetings.join_url;
+  //         zoomhost = res.data.meetings.host_id;
+  //       })
+  //       .catch((err) => console.log(err));
+  //   })
+  //   .catch((err) => console.log(err));
 
-    setFormInput({
-      zoom_host: zoomhost,
-      zoom_participant: zoomlink,
-    })
-  };
+  //   setFormInput({
+  //     zoom_host: zoomhost,
+  //     zoom_participant: zoomlink,
+  //   })
+  // };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

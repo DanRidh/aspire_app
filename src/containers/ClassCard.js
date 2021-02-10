@@ -16,7 +16,7 @@ import ShareIcon from "@material-ui/icons/Share";
 // import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 // import MoreVertIcon from "@material-ui/icons/MoreVert";
 import image from "../images/card-image.jpg";
-import { Avatar, Button, Divider, Link } from "@material-ui/core";
+import { Avatar, Button, Divider } from "@material-ui/core";
 import StripeButton from "../components/StripeButton";
 import axios from "axios";
 
@@ -117,9 +117,9 @@ export default function ClassCard({c ,setEnrollStatus, setPaymentStatus, payment
 
   let paidcheck = (sessionPaid === "paid" && sessionPaidID === c.id);
   
-  const openZoom = () => {
-    window.location.href = c.zoom_participant;
-  };
+  // const openZoom = () => {
+  //   window.location.href = c.zoom_participant;
+  // };
 
   return (
     <Card className={classes.root}>
@@ -173,7 +173,7 @@ export default function ClassCard({c ,setEnrollStatus, setPaymentStatus, payment
         <Divider className={classes.cardItemMargin} />
         <Typography className={classes.cardItemMargin}>
           {paidcheck ? (
-            <a style={{display: "table-cell"}} href={c.zoom_participant} target="_blank">Your zoom join link</a>
+            <a style={{display: "table-cell"}} href={c.zoom_participant} target="_blank" rel="noreferrer">Your zoom join link</a>
           ) : (
             <div></div>
           )}
