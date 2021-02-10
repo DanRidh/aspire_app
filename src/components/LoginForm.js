@@ -99,7 +99,7 @@ export function LoginForm({accType,setLoggedIn}) {
         }
       })
       .then(res=>{
-        console.log(res)
+        // console.log(res)
 
         // log user in,set log in true, redirect to homepage
         localStorage.setItem('jwt',res.data.token)

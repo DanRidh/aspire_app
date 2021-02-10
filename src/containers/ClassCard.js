@@ -69,7 +69,7 @@ export default function ClassCard({c ,setEnrollStatus, setPaymentStatus, payment
 
   const handleUnenroll = () => {
     // console.log(c)
-    console.log(c.id);
+    // console.log(c.id);
 
     axios({
       method: "POST",
@@ -90,7 +90,7 @@ export default function ClassCard({c ,setEnrollStatus, setPaymentStatus, payment
       .catch((err) => console.error(err));
   };
 
-  console.log(c);
+  // console.log(c);
 
   const [sessionPaid, setSessionPaid] = useState("");
   const [sessionPaidID, setSessionPaidID] = useState(0);
@@ -103,9 +103,9 @@ export default function ClassCard({c ,setEnrollStatus, setPaymentStatus, payment
     },
   })
   .then(res=>{
-    console.log('my tutor sessions');
-    console.log(res.data[0].status);
-    console.log(res.data[0].tutor_session.id)
+    // console.log('my tutor sessions');
+    // console.log(res.data[0].status);
+    // console.log(res.data[0].tutor_session.id)
     setSessionPaid(res.data[0].status);
     setSessionPaidID(res.data[0].tutor_session.id);
   })

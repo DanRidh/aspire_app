@@ -63,7 +63,7 @@ const ViewTutorSessionPage = ({ id }) => {
     setAge("36");
     setRating(4.5);
     setPrice("80");
-    console.log(price);
+    // console.log(price);
     const image_path = "tutor/mrslockheart1/profile-pic/amongus.jpg";
     setProfilePhoto(
       `https://aspire-app2021.s3-ap-southeast-1.amazonaws.com/${image_path}`
