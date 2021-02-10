@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ClassCard({c}) {
+export default function ClassCard({c ,setEnrollStatus, setPaymentStatus}) {
   // const classes = useStyles({ profilePhoto, username });
   const classes = useStyles();
 
@@ -131,7 +131,7 @@ export default function ClassCard({c}) {
         <Divider className={classes.cardItemMargin}/>
       </CardContent>
       <CardActions>
-        <StripeButton c={c}>Pay</StripeButton>
+        <StripeButton c={c} setEnrollStatus={setEnrollStatus} setPaymentStatus={setPaymentStatus} >Pay</StripeButton>
         <Button onClick={handleUnenroll}>Unenroll</Button>
         <IconButton aria-label="share">
           <ShareIcon />

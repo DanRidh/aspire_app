@@ -1,9 +1,9 @@
 import React from 'react';
-import StripeCheckout from 'react-stripe-checkout';
-import { Button } from '@material-ui/core';
 import axios from "axios";
+import { Button } from '@material-ui/core';
+import StripeCheckout from 'react-stripe-checkout';
 
-const StripeButton = ({c}) => {
+const StripeButton = ({c,setEnrollStatus, setPaymentStatus }) => {
 
   let stsID = null
 
@@ -27,6 +27,9 @@ const StripeButton = ({c}) => {
       console.log(res)
       
       stsID = res.data.student_tutor_session_id
+
+      setEnrollStatus(true)
+
 
       // create instance in payment table
       axios({
@@ -57,10 +60,17 @@ const StripeButton = ({c}) => {
         .then(res=>{
           console.log('payment status updated')
           console.log(res)
+          setPaymentStatus(true)
         })
-        .catch(err=>console.error(err))
+        .catch(err=>{
+          console.error(err)
+          setPaymentStatus(false)
+        })
       })
-      .catch(err=>console.error(err))
+      .catch(err=>{
+        console.error(err)
+        setEnrollStatus(false)
+      })
     })
     .catch(err=>console.error(err))
   };
