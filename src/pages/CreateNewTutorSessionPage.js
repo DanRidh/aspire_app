@@ -154,6 +154,7 @@ const CreateNewTutorSessionPage = () => {
       !endTimeNull
     ) {
       setSubmitDisabled(false);
+      handleZoomlink();
     }
   }, [
     subject,
@@ -163,6 +164,8 @@ const CreateNewTutorSessionPage = () => {
     dateNull,
     startTimeNull,
     endTimeNull,
+    zoomlink,
+    zoomhost,
   ]);
 
   const handleSubjectDropdownChange = (event) => {
