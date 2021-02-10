@@ -4,7 +4,7 @@ import axios from "axios";
 import { Button } from '@material-ui/core';
 import StripeCheckout from 'react-stripe-checkout';
 
-const StripeButton = ({c,setEnrollStatus, setPaymentStatus }) => {
+const StripeButton = ({c,setEnrollStatus, setPaymentStatus, paymentStatus }) => {
 
   let stsID = null
 

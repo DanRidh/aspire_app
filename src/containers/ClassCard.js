@@ -16,7 +16,7 @@ import ShareIcon from "@material-ui/icons/Share";
 // import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 // import MoreVertIcon from "@material-ui/icons/MoreVert";
 import image from "../images/card-image.jpg";
-import { Avatar, Button, Divider } from "@material-ui/core";
+import { Avatar, Button, Divider, Link } from "@material-ui/core";
 import StripeButton from "../components/StripeButton";
 import axios from "axios";
 
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ClassCard({c ,setEnrollStatus, setPaymentStatus}) {
+export default function ClassCard({c ,setEnrollStatus, setPaymentStatus, paymentStatus}) {
   // const classes = useStyles({ profilePhoto, username });
   const classes = useStyles();
 
@@ -90,6 +90,10 @@ export default function ClassCard({c ,setEnrollStatus, setPaymentStatus}) {
   };
 
   console.log(c);
+
+  const openZoom = () => {
+    window.location.href = c.zoom_participant;
+  };
 
   return (
     <Card className={classes.root}>
@@ -141,9 +145,18 @@ export default function ClassCard({c ,setEnrollStatus, setPaymentStatus}) {
           Price: RM {price}
         </Typography>
         <Divider className={classes.cardItemMargin} />
+        <Typography className={classes.cardItemMargin}>
+          {paymentStatus ? (
+            <a style={{display: "table-cell"}} href={c.zoom_participant} target="_blank">Your zoom join link</a>
+          ) : (
+            <div></div>
+          )}
+        </Typography>
+        
+        
       </CardContent>
       <CardActions>
-        <StripeButton c={c} setEnrollStatus={setEnrollStatus} setPaymentStatus={setPaymentStatus} >Pay</StripeButton>
+        <StripeButton c={c} setEnrollStatus={setEnrollStatus} setPaymentStatus={setPaymentStatus} paymentStatus={paymentStatus}>Pay</StripeButton>
         <Button onClick={handleUnenroll}>Unenroll</Button>
         <IconButton aria-label="share">
           <ShareIcon />
