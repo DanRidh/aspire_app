@@ -62,14 +62,14 @@ export function SignUpForm({accType,setLoggedIn}) {
 
   // -------------------onSubmit form event handler -------------------
   const handleSubmit=()=>{
-    console.log('user details: ',firstName,lastName,email,password,age,isFemale)
-    console.log(ageError,emailError,passwordError)
-    console.log('user details: ',firstName,lastName,email,password,age,isFemale)
-    console.log(accType)
+    // console.log('user details: ',firstName,lastName,email,password,age,isFemale)
+    // console.log(ageError,emailError,passwordError)
+    // console.log('user details: ',firstName,lastName,email,password,age,isFemale)
+    // console.log(accType)
 
     // if no errors in validation
     if (!ageError && !emailError && !passwordError){
-      console.log(accType)
+      // console.log(accType)
       if (accType==="student"){
         // create student account
         axios({

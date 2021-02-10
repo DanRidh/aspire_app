@@ -72,8 +72,8 @@ let LoginModal=({ loggedIn ,setLoggedIn})=>{
     }
 
     
-    console.log("register? ", register)
-    console.log("accType: ",accType)
+    // console.log("register? ", register)
+    // console.log("accType: ",accType)
 
     return(
         <>
