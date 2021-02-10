@@ -7,7 +7,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
+import { duration, makeStyles } from "@material-ui/core/styles";
 import {
   Input,
   InputAdornment,
@@ -21,6 +21,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import { ContactlessOutlined } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -69,6 +70,8 @@ const CreateNewTutorSessionPage = () => {
   const classes = useStyles();
   let tutor_id = localStorage.getItem("id");
   const jwt = localStorage.getItem("jwt");
+  let zoomlink = null;
+  let zoomhost = null;
 
   const [submitDisabled, setSubmitDisabled] = useState(true);
   const [titleNull, setTitleNull] = useState(true);
@@ -248,10 +251,64 @@ const CreateNewTutorSessionPage = () => {
     return duration;
   };
 
+  //tester
+  const handleZoomlink = () => {
+    console.log("generating zoom link");
+    setFormInput({
+      zoom_host: "https://us05web.zoom.us/j/85496237435?pwd=dHFBc2RieTBxN0pmQmd0SGQ4RG9adz09",
+      zoom_participant: "https://us05web.zoom.us/j/85496237435?pwd=dHFBc2RieTBxN0pmQmd0SGQ4RG9adz09",
+    });
+  };
+
+  const handleZoomLink = () => {
+    console.log("generating zoom link");
+
+    axios({
+      method: "POST",
+      url: "https://api.zoom.us/v2/users/danialridh1@gmail.com/meetings",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+      data: {
+        topic: `${formInput.title}`,
+        type: 2,
+        start_time: `${formInput.start_hour}`,
+        duration: `${duration}`,
+        timezone: "MY"
+      },
+    })
+      .then((res) => {
+        console.log("zoom link generated");
+        console.log(res);
+
+      axios({
+        method: "GET",
+        url:"https://api.zoom.us/v2/users/danialridh1@gmail.com/meetings?page_size=30&type=scheduled",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
+        .then((res) => {
+          console.log("getting meeting list")
+          console.log(res)
+          zoomlink = res.data.meetings.join_url;
+          zoomhost = res.data.meetings.host_id;
+        })
+        .catch((err) => console.log(err));
+    })
+    .catch((err) => console.log(err));
+
+    setFormInput({
+      zoom_host: zoomhost,
+      zoom_participant: zoomlink,
+    })
+  };
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
     console.log(calculateDuration());
+    handleZoomlink();
 
     let data = formInput;
 

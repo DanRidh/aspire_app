@@ -46,8 +46,7 @@ const StripeButton = ({ c }) => {
             // update payment status in student_tutor_session
             axios({
               method: "POST",
-              url:
-                "https://aspire-api2021.herokuapp.com/api/v1/student_tutor_sessions/update-payment",
+              url: "https://aspire-api2021.herokuapp.com/api/v1/student_tutor_sessions/update-payment",
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("jwt")}`,
               },
