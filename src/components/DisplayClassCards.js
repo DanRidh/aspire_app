@@ -3,7 +3,7 @@ import axios from "axios";
 
 import ClassCard from "../containers/ClassCard";
 
-const DisplayClassCards = () => {
+const DisplayClassCards = ({ setEnrollStatus,setPaymentStatus }) => {
   const [classes, updateClasses] = useState([]);
 
   // NOTE: selective retrieval based on student and tutor id
@@ -30,7 +30,7 @@ const DisplayClassCards = () => {
         {classes.map((c) => {
           return (
             <div key={c.id}>
-              <ClassCard c={c}></ClassCard>
+              <ClassCard c={c} setEnrollStatus={setEnrollStatus} setPaymentStatus={setPaymentStatus} ></ClassCard>
             </div>
           );
         })}

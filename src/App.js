@@ -4,6 +4,7 @@ import { Redirect, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { ToastContainer } from 'react-toastify';
 
 import Homepage from "./pages/Homepage";
 import LandingPage from "./pages/Landingpage";
@@ -22,6 +23,7 @@ function App() {
   return (
     <>
       <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn}></Navbar>
+      <ToastContainer/>
 
       <Route exact path="/" component={LandingPage} />
 
@@ -43,7 +45,6 @@ function App() {
       {/* <ViewTutorSessionPage tutorSessionId="Pass in tutor session id here"></ViewTutorSessionPage> */}
 
       {/* <TutorProfilePage></TutorProfilePage> */}
-
       <Footer></Footer>
     </>
   );

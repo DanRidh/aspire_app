@@ -3,6 +3,7 @@ import { Button, TextField, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import {useHistory} from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 export function LoginForm({accType,setLoggedIn}) {
 
@@ -63,10 +64,28 @@ export function LoginForm({accType,setLoggedIn}) {
           localStorage.setItem('id', res.data.id)
           localStorage.setItem('accType',"student")
           setLoggedIn(true)
+
+          toast.success(`Welcome! You have been logged in.`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+
           history.push("/home")
         })
       .catch(err=>{
         console.error(err)
+        toast.error(`Unable to login. Please check your password and email.`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
       })
     }
     else{
@@ -88,11 +107,30 @@ export function LoginForm({accType,setLoggedIn}) {
         localStorage.setItem('accType',"tutor")
 
         setLoggedIn(true)
-        
+
+        toast.success(`Welcome! You have been logged in.`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+
         // Load homepage
         history.push("/home")
       })
-      .catch(err=>{console.log(err)})
+      .catch(err=>{
+        console.error(err)
+        toast.error(`Unable to login. Please check your password and email.`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      })
     }
   };
 
