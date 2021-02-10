@@ -29,9 +29,6 @@ const StripeButton = ({c}) => {
       stsID = res.data.student_tutor_session_id
 
       // create instance in payment table
-      console.log('stsID : ',stsID) // returns correct value
-      console.log(localStorage.getItem("jwt")) // returns correct value
-
       axios({
         method: 'POST',
         url: 'https://aspire-api2021.herokuapp.com/api/v1/payments/new',
@@ -40,19 +37,33 @@ const StripeButton = ({c}) => {
         },
         data:{
           student_tutor_session: `${stsID}`
-        } 
+        }
       })
       .then((res) => {
         console.log('payment instance created')
         console.log(res);
+
+        // update payment status in student_tutor_session
+        axios({
+          method:'POST',
+          url:'https://aspire-api2021.herokuapp.com/api/v1/student_tutor_sessions/update-payment',
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`
+          },
+          data:{
+            student_tutor_session_id: `${stsID}`
+          }
+        })
+        .then(res=>{
+          console.log('payment status updated')
+          console.log(res)
+        })
+        .catch(err=>console.error(err))
       })
       .catch(err=>console.error(err))
-
     })
     .catch(err=>console.error(err))
-
   };
-
 
   return (
     <>
