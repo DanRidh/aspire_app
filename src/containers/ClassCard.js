@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 // import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -85,12 +85,38 @@ export default function ClassCard({c ,setEnrollStatus, setPaymentStatus, payment
       .then((res) => {
         console.log(res);
         alert(`Successfully unenrolled from ${c.title}`);
+        setPaymentStatus(false);
       })
       .catch((err) => console.error(err));
   };
 
   console.log(c);
 
+  const [sessionPaid, setSessionPaid] = useState("");
+  const [sessionPaidID, setSessionPaidID] = useState(0);
+
+  axios({
+    method: 'GET',
+    url: "https://aspire-api2021.herokuapp.com/api/v1/student_tutor_sessions/me",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
+    },
+  })
+  .then(res=>{
+    console.log('my tutor sessions');
+    console.log(res.data[0].status);
+    console.log(res.data[0].tutor_session.id)
+    setSessionPaid(res.data[0].status);
+    setSessionPaidID(res.data[0].tutor_session.id);
+  })
+  .catch(err=>{
+    console.log(err)
+    setSessionPaid("");
+    setSessionPaidID(-1);
+  })
+
+  let paidcheck = (sessionPaid === "paid" && sessionPaidID === c.id);
+  
   const openZoom = () => {
     window.location.href = c.zoom_participant;
   };
@@ -146,7 +172,7 @@ export default function ClassCard({c ,setEnrollStatus, setPaymentStatus, payment
         </Typography>
         <Divider className={classes.cardItemMargin} />
         <Typography className={classes.cardItemMargin}>
-          {paymentStatus ? (
+          {paidcheck ? (
             <a style={{display: "table-cell"}} href={c.zoom_participant} target="_blank">Your zoom join link</a>
           ) : (
             <div></div>
