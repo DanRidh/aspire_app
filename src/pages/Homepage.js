@@ -80,7 +80,7 @@ const Homepage = () => {
         pauseOnHover: true,
         draggable: true,
       });
-    } else if(enrollStatus===false){
+    } else if(paymentStatus===false){
       // error messages not working
       toast.error(`Unable to process payment, please try again.`, {
         position: "top-right",
