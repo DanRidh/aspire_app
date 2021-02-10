@@ -1,5 +1,6 @@
 import axios from "axios";
 import RadioGroup from './RadioGroup'
+import { toast } from 'react-toastify';
 import React, { useState } from "react";
 import {useHistory} from 'react-router-dom'
 import { makeStyles } from "@material-ui/core/styles";
@@ -93,11 +94,31 @@ export function SignUpForm({accType,setLoggedIn}) {
 
             setLoggedIn(true)
             
+            toast.success(`Welcome! You have been succesfully registered and signed in.`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            });
+    
             // Load homepage
             history.push("/home")
 
           })
-        .catch(err=>console.group(err))
+        .catch(err=>{
+          console.error(err)
+          toast.error(`Unable to sign up. Please check the inputs and try again.`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        })
+          
       }
 
       else{
@@ -119,16 +140,35 @@ export function SignUpForm({accType,setLoggedIn}) {
 
           // log user in,set log in true, redirect to homepage
           localStorage.setItem('jwt',res.data.token)
-          localStorage.setItem('id', res.data.student.id)
+          localStorage.setItem('id', res.data.tutor.id)
           localStorage.setItem('accType',"tutor")
 
           setLoggedIn(true)
-          
+
+          toast.success(`Welcome! You have been succesfully registered and signed in.`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+
           // Load homepage
           history.push("/home")
 
         })
-        .catch(err=>{console.log(err)})
+        .catch(err=>{
+          console.error(err)
+          toast.error(`Unable to sign up. Please check the inputs and try again.`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        })
         }
     }
   }
