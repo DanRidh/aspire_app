@@ -14,7 +14,7 @@ import axios from "axios";
 
 const TutorProfilePage = () => {
   let tutor_id = useParams().id;
-  const jwt = localStorage.getItem("jwt");
+  // const jwt = localStorage.getItem("jwt");
 
   const [age, updateAge] = useState(0);
   const [email, updateEmail] = useState("");
@@ -25,7 +25,7 @@ const TutorProfilePage = () => {
   const [rating, updateRating] = useState(5);
   const [username, updateUsername] = useState("");
 
-  const [classList, updateClassList] = useState([]);
+  // const [classList, updateClassList] = useState([]);
 
   // Retrieve tutor
   useEffect(() => {
@@ -41,7 +41,7 @@ const TutorProfilePage = () => {
         updateRating(res.rating);
         updateUsername(res.username);
       });
-  }, []);
+  }, [tutor_id]);
 
   // Retrieve tutor's classes
   // WIP - pending API for retrieving tutor_sessions based on tutor_id
@@ -50,8 +50,10 @@ const TutorProfilePage = () => {
       .get(
         `https://aspire-api2021.herokuapp.com/api/v1/tutor_sessions/${tutor_id}`
       )
-      .then((res) => {});
-  }, []);
+      .then((res) => {
+        console.log(res);
+      });
+  }, [tutor_id]);
 
   return (
     <Container>

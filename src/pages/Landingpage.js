@@ -16,10 +16,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-
 const LandingPage = () => {
   const classes = useStyles();
-  const [popUpTextState, setPopUpTextState] = useState(false)
+  const [popUpTextState, setPopUpTextState] = useState(false);
 
   return (
     <>
@@ -57,7 +56,8 @@ const LandingPage = () => {
             Teaching and learning made easier for you.
           </h5>
           <Button
-            onClick={() => {setPopUpTextState(!popUpTextState)
+            onClick={() => {
+              setPopUpTextState(!popUpTextState);
             }}
             variant="contained"
             style={{
@@ -71,13 +71,15 @@ const LandingPage = () => {
           >
             START FREE
           </Button>
-            {popUpTextState
-            ? <Typography variant='caption'style={{display:'block', marginTop:'10px'}}>
-              Welcome aboard! Click the register/sign up button at the top to get started.
-              </Typography>
-            : null
-            }
-
+          {popUpTextState ? (
+            <Typography
+              variant="caption"
+              style={{ display: "block", marginTop: "10px" }}
+            >
+              Welcome aboard! Click the register/sign up button at the top to
+              get started.
+            </Typography>
+          ) : null}
         </div>
       </div>
       {/* END JUMBOTRON */}
@@ -186,7 +188,11 @@ const LandingPage = () => {
               and start learning! It's that simple!
             </h5>
           </div>
-          <img src={howItWorks} style={{ height: "400px" }}></img>
+          <img
+            src={howItWorks}
+            alt={howItWorks}
+            style={{ height: "400px" }}
+          ></img>
         </div>
       </div>
       {/* END HOW IT WORKS */}

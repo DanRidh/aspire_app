@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useReducer } from "react";
-import { useParams } from "react-router-dom";
 
 import axios from "axios";
 
@@ -70,7 +69,6 @@ const CreateNewTutorSessionPage = () => {
   const classes = useStyles();
   let tutor_id = localStorage.getItem("id");
   const jwt = localStorage.getItem("jwt");
-  
 
   const [submitDisabled, setSubmitDisabled] = useState(true);
   const [titleNull, setTitleNull] = useState(true);
@@ -89,7 +87,7 @@ const CreateNewTutorSessionPage = () => {
   const [subject, setSubject] = useState("");
   const [maxStudentCapacity, setMaxStudentCapacity] = useState("");
   const [price, setPrice] = useState(0);
-  const subjects = [];
+  // const subjects = [];
 
   const [formInput, setFormInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
@@ -129,17 +127,17 @@ const CreateNewTutorSessionPage = () => {
         updateRating(res.data.rating);
         updateUsername(res.data.username);
       });
-  }, []);
+  }, [tutor_id]);
 
   // Retrieve subject
-  useEffect(() => {
-    axios
-      .get(`https://aspire-api2021.herokuapp.com/api/v1/subjects/`)
-      .then((res) => {
-        subjects.push(res.data);
-        console.log(subjects);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`https://aspire-api2021.herokuapp.com/api/v1/subjects/`)
+  //     .then((res) => {
+  //       subjects.push(res.data);
+  //       console.log(subjects);
+  //     });
+  // }, []);
 
   // Form check
   useEffect(() => {
