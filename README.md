@@ -1,13 +1,8 @@
+Aspire is a Student-Tutor platform developed on React with Material-UI with a backend of python. Backend is developed on flask and deployed through heroku. 
+
+Backend can be found here;
+https://github.com/syakirwong/aspire_api
 # Getting Started with Create React App
-
-
-
-#Hello Jordan here
-
-#lerrickdau edited this
-
-^credential test
-
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
